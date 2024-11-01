@@ -16,8 +16,8 @@
 <% for (Issue issue : issues) {%>
 <div>
     <strong>Asunto:</strong> <%= issue.getSubject()%><br />
-    <strong>Descripción:</strong> <%= issue.getSubject() != null ? issue.getSubject() : "Sin descripción"%><br />
-    <strong>Creado el:</strong> <%= issue.getSubject()%><br />
+    <strong>Descripción:</strong> <%= issue.getDescription()!= null ? issue.getDescription(): "Sin descripción"%><br />
+    <strong>Creado el:</strong> <%= issue.getStartDate()%><br />
 </div>
 <hr />
 <% } %>

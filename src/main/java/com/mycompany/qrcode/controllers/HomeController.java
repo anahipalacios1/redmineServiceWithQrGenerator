@@ -27,8 +27,9 @@ public class HomeController {
                 model.addAttribute("error", "No se encontraron issues.");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             model.addAttribute("error", "Error al obtener issues: " + e.getMessage());
         }
-        return "index";
+        return "listado";
     }
 }

@@ -1,14 +1,15 @@
 package com.mycompany.qrcode.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mycompany.qrcode.beans.Issue;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class IssuesResponse {
     @JsonProperty("issues")
     private List<Issue> issues;
 
-    // Getters y setters
     public List<Issue> getIssues() {
         return issues;
     }

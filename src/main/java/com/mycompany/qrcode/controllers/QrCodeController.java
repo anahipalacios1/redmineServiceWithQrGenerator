@@ -38,7 +38,7 @@ public class QrCodeController {
 
         // Construir el contenido del QR con los campos personalizados del issue
         StringBuilder qrData = new StringBuilder();
-        for (CustomField field : issue.getCustom_fields()) {
+        for (CustomField field : issue.getCustomFields()) {
             qrData.append(field.getName()).append(": ").append(field.getValue()).append("\n");
         }
 

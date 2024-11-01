@@ -36,6 +36,13 @@
             <version>1.2.5</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>10.1.31</version>
+            <!--uncomment below if deploying in web container -->
+            <!--<scope>provided</scope> -->
+        </dependency>
+        <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-spec</artifactId>
             <version>1.2.5</version>
@@ -43,7 +50,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.0.0</version>
+            <version>3.3.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.zxing</groupId>
@@ -89,6 +96,10 @@
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

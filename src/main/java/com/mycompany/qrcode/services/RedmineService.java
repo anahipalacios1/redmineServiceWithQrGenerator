@@ -36,10 +36,8 @@ public class RedmineService {
         String url = redmineConfig.getUrl() + "/issues.json";
 
         try {
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
-            IssuesResponse issuesResponse = objectMapper.readValue(response.getBody(), IssuesResponse.class);
-            System.out.println("Total issues obtenidos: " + issuesResponse.getIssues().size());
-            return issuesResponse;
+            ResponseEntity<IssuesResponse> response = restTemplate.exchange(url, HttpMethod.GET, entity, IssuesResponse.class);
+            return response.getBody();
         } catch (HttpClientErrorException e) {
             throw new Exception("Error en la solicitud a Redmine: " + e.getStatusCode() + " - " + e.getResponseBodyAsString(), e);
         } catch (HttpServerErrorException e) {

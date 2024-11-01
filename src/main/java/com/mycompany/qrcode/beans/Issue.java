@@ -1,26 +1,65 @@
 package com.mycompany.qrcode.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(Include.NON_NULL)
 public class Issue {
+    @JsonProperty("id")
     private int id;
-    private Project project;
-    private Tracker tracker;
-    private Status status;
-    private Priority priority;
-    private Author author;
-    private String subject;
-    private String description;
-    private String start_date;
-    private String due_date;
-    private int done_ratio;
-    private boolean is_private;
-    private String estimated_hours;
-    private List<CustomField> custom_fields;
-    private String created_on;
-    private String updated_on;
-    private String closed_on;
 
+    @JsonProperty("project")
+    private Project project;
+
+    @JsonProperty("tracker")
+    private Tracker tracker;
+
+    @JsonProperty("status")
+    private Status status;
+
+    @JsonProperty("priority")
+    private Priority priority;
+
+    @JsonProperty("author")
+    private Author author;
+
+    @JsonProperty("subject")
+    private String subject;
+
+    @JsonProperty("description")
+    private String description;
+
+    @JsonProperty("start_date")
+    private String startDate;
+
+    @JsonProperty("due_date")
+    private String dueDate;
+
+    @JsonProperty("done_ratio")
+    private int doneRatio;
+
+    @JsonProperty("is_private")
+    private boolean isPrivate;
+
+    @JsonProperty("estimated_hours")
+    private String estimatedHours;
+
+//    @JsonProperty("custom_fields")
+    private List<CustomField> customFields;
+
+    @JsonProperty("created_on")
+    private String createdOn;
+
+    @JsonProperty("updated_on")
+    private String updatedOn;
+
+    @JsonProperty("closed_on")
+    private String closedOn;    
+    
     public int getId() {
         return id;
     }
@@ -75,8 +114,8 @@ public class Issue {
 
     public void setSubject(String subject) {
         this.subject = subject;
-    }    
-    
+    }
+
     public String getDescription() {
         return description;
     }
@@ -85,77 +124,75 @@ public class Issue {
         this.description = description;
     }
 
-    public String getStart_date() {
-        return start_date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setStart_date(String start_date) {
-        this.start_date = start_date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public String getDue_date() {
-        return due_date;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setDue_date(String due_date) {
-        this.due_date = due_date;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public int getDone_ratio() {
-        return done_ratio;
+    public int getDoneRatio() {
+        return doneRatio;
     }
 
-    public void setDone_ratio(int done_ratio) {
-        this.done_ratio = done_ratio;
+    public void setDoneRatio(int doneRatio) {
+        this.doneRatio = doneRatio;
     }
 
-    public boolean isIs_private() {
-        return is_private;
+    public boolean isIsPrivate() {
+        return isPrivate;
     }
 
-    public void setIs_private(boolean is_private) {
-        this.is_private = is_private;
+    public void setIsPrivate(boolean isPrivate) {
+        this.isPrivate = isPrivate;
     }
 
-    public String getEstimated_hours() {
-        return estimated_hours;
+    public String getEstimatedHours() {
+        return estimatedHours;
     }
 
-    public void setEstimated_hours(String estimated_hours) {
-        this.estimated_hours = estimated_hours;
+    public void setEstimatedHours(String estimatedHours) {
+        this.estimatedHours = estimatedHours;
     }
 
-    public String getCreated_on() {
-        return created_on;
+    public List<CustomField> getCustomFields() {
+        return customFields;
     }
 
-    public void setCreated_on(String created_on) {
-        this.created_on = created_on;
+    public void setCustomFields(List<CustomField> customFields) {
+        this.customFields = customFields;
     }
 
-    public String getUpdated_on() {
-        return updated_on;
+    public String getCreatedOn() {
+        return createdOn;
     }
 
-    public void setUpdated_on(String updated_on) {
-        this.updated_on = updated_on;
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
     }
 
-    public String getClosed_on() {
-        return closed_on;
+    public String getUpdatedOn() {
+        return updatedOn;
     }
 
-    public void setClosed_on(String closed_on) {
-        this.closed_on = closed_on;
+    public void setUpdatedOn(String updatedOn) {
+        this.updatedOn = updatedOn;
     }
 
-    public List<CustomField> getCustom_fields() {
-        return custom_fields;
+    public String getClosedOn() {
+        return closedOn;
     }
 
-    public void setCustom_fields(List<CustomField> custom_fields) {
-        this.custom_fields = custom_fields;
+    public void setClosedOn(String closedOn) {
+        this.closedOn = closedOn;
     }
-        
-    
 }
