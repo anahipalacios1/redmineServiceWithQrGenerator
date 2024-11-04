@@ -48,7 +48,7 @@ public class Issue {
     @JsonProperty("estimated_hours")
     private String estimatedHours;
 
-//    @JsonProperty("custom_fields")
+    @JsonProperty("custom_fields")
     private List<CustomField> customFields;
 
     @JsonProperty("created_on")
