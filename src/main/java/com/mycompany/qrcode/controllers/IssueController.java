@@ -32,6 +32,7 @@ public class IssueController {
             model.addAttribute("issue", issue);
             return "seleccionar_id";
         } catch (Exception e) {
+            e.printStackTrace();
             model.addAttribute("error", "Error al obtener los datos del issue: " + e.getMessage());
             return "error";
         }
