@@ -28,12 +28,15 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .btn-generate-qr {
+        .btn-generate-qr, .btn-export-pdf {
             color: #fff;
             background-color: #007bff;
             border: none;
             padding: 8px 12px;
             border-radius: 4px;
+        }
+        .btn-export-pdf {
+            background-color: #28a745; /* Color verde para el botón de exportar */
         }
     </style>
 </head>
@@ -52,7 +55,7 @@
             <div class="alert alert-danger"><%= error %></div>
         <% } else if (issues != null && !issues.isEmpty()) { %>
             <p class="text-right"><strong>Total de Issues:</strong> <%= issues.size() %></p>
-            
+
             <% for (Issue issue : issues) { %>
                 <div class="issue-card">
                     <h4><strong>ID:</strong> <%= issue.getId() %> - <%= issue.getSubject() %></h4>
@@ -62,6 +65,9 @@
                     <p><strong>Proyecto:</strong> <%= issue.getProject() != null ? issue.getProject().getName() : "Sin proyecto" %></p>
                     <p><strong>Tracker:</strong> <%= issue.getTracker() != null ? issue.getTracker().getName() : "Sin tracker" %></p>
                     <a href="/qr/<%= issue.getId() %>" class="btn btn-generate-qr">Generar QR</a>
+                    
+                    <!-- Botón de exportar a PDF para cada Issue -->
+                    <a href="/export/pdf/<%= issue.getId() %>" class="btn btn-export-pdf">Exportar a PDF</a>
                 </div>
             <% } %>
         <% } else { %>

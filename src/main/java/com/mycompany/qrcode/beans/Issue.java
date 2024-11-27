@@ -58,8 +58,8 @@ public class Issue {
     private String updatedOn;
 
     @JsonProperty("closed_on")
-    private String closedOn;    
-    
+    private String closedOn;
+
     public int getId() {
         return id;
     }
