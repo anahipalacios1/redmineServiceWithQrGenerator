@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="customFields" pageWidth="555" pageHeight="100" columnWidth="503" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2fa2a285-939c-42fe-9f3f-235967c946c9">
-    <property name="com.jaspersoft.studio.unit." value="mm"/>
-    <property name="com.jaspersoft.studio.unit.pageHeight" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.pageWidth" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.topMargin" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.bottomMargin" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.leftMargin" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.rightMargin" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.columnWidth" value="mm"/>
-    <property name="com.jaspersoft.studio.unit.columnSpacing" value="mm"/>
-    <field name="name" class="java.lang.String"/>
-    <field name="value" class="java.lang.String"/>
-    <detail>
-        <band height="20" splitType="Stretch">
-            <textField>
-                <reportElement x="0" y="0" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="100" y="0" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
-            </textField>
-        </band>
-    </detail>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="customFields" pageWidth="100" pageHeight="50" columnWidth="100" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2fa2a285-939c-42fe-9f3f-235967c946c9">
+	<field name="name" class="java.lang.String"/>
+	<field name="value" class="java.lang.String"/>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="50" height="20" uuid="1d121696-2635-4542-8d12-79d0266cd012"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="50" y="0" width="50" height="20" uuid="e779ae52-d53a-4d59-97b2-a30efbe761ad"/>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
 </jasperReport>
