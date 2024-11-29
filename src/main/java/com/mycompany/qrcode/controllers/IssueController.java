@@ -46,26 +46,17 @@ public class IssueController {
     @GetMapping("/export/pdf/{id}")
     public ResponseEntity<byte[]> exportPdfForIssue(@PathVariable("id") int id) {
         try {
-            // Obtener la lista de issues desde el servicio de Redmine
             IssuesResponse issuesResponse = redmineService.getIssues();
-
-            // Filtrar el Issue por ID
             Issue issue = issuesResponse.getIssues().stream()
                     .filter(i -> i.getId() == id)
                     .findFirst()
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
-
-            // Generar el reporte PDF en memoria
             byte[] pdfBytes = redmineService.exportReport(issue);
-
-            // Configurar encabezados para la respuesta
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDisposition(ContentDisposition.builder("attachment")
                     .filename("issue_" + id + "_report.pdf")
                     .build());
-
-            // Retornar el PDF como respuesta
             return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
 
         } catch (Exception e) {

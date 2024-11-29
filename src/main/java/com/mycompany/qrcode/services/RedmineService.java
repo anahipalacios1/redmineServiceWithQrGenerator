@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.mycompany.qrcode.beans.CustomField;
 import com.mycompany.qrcode.beans.Issue;
 import com.mycompany.qrcode.util.IssuesReportGenerator;
 import java.io.File;
@@ -64,27 +65,33 @@ public class RedmineService {
         }
     }
 
-    public byte[] exportReport(Issue issue) throws JRException, FileNotFoundException {
-        // Crear una lista con el único objeto Issue recibido
-        List<Issue> issueList = new ArrayList<>();
-        issueList.add(issue);
+public byte[] exportReport(Issue issue) throws JRException, FileNotFoundException {
+    // Cargar el reporte principal
+    File file = ResourceUtils.getFile("classpath:employees.jrxml");
+    JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
-        // Cargar el archivo JRXML y compilarlo
-        File file = ResourceUtils.getFile("classpath:employees.jrxml"); // Cambia al nombre correcto de tu JRXML
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+    // Datasource principal
+    List<Issue> issueList = new ArrayList<>();
+    issueList.add(issue);
+    JRBeanCollectionDataSource issueDataSource = new JRBeanCollectionDataSource(issueList);
 
-        // Crear un DataSource a partir de la lista
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(issueList);
+    // Datasource del subreporte
+    List<CustomField> customFields = issue.getCustomFields(); // Verifica que no sea null ni vacío
+    JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(customFields);
 
-        // Configurar parámetros adicionales para el reporte
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("createdBy", "Java Developer"); // Puedes agregar más parámetros si es necesario
+    // Parámetros
+    Map<String, Object> parameters = new HashMap<>();
+    parameters.put("createdBy", "Java Developer");
+    parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
+    parameters.put("SUBREPORT_PATH", "C:/Users/Usuario/JaspersoftWorkspace/MyReports/");
 
-        // Llenar el reporte con los datos
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+    // Generar el reporte
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, issueDataSource);
 
-        // Exportar el reporte a PDF en memoria
-        return JasperExportManager.exportReportToPdf(jasperPrint);
-    }
+    // Exportar a PDF
+    return JasperExportManager.exportReportToPdf(jasperPrint);
+}
+
+
 
 }
