@@ -5,11 +5,14 @@
 	<field name="value" class="java.lang.String"/>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement x="0" y="0" width="50" height="20" uuid="1d121696-2635-4542-8d12-79d0266cd012"/>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}+":"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField textAdjust="StretchHeight">
 				<reportElement x="50" y="0" width="50" height="20" uuid="e779ae52-d53a-4d59-97b2-a30efbe761ad"/>
 				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
 			</textField>

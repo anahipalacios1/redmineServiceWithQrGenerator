@@ -1,70 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="595" pageHeight="842" columnWidth="595" columnSpacing="110" leftMargin="0" rightMargin="0" topMargin="14" bottomMargin="14" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
-    <parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-    <parameter name="SUBREPORT_PATH" class="java.lang.String"/>
-    <field name="id" class="java.lang.Integer"/>
-    <field name="subject" class="java.lang.String"/>
-    <field name="description" class="java.lang.String"/>
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="22" splitType="Stretch">
-            <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
-        </band>
-    </title>
-    <pageHeader>
-        <band/>
-    </pageHeader>
-    <columnHeader>
-        <band/>
-    </columnHeader>
-    <detail>
-        <band height="261">
-            <rectangle>
-                <reportElement x="220" y="10" width="155" height="240" forecolor="#EBEBEB" backcolor="#EDEDED" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
-            </rectangle>
-            <rectangle>
-                <reportElement x="220" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="31067c70-f2a8-410b-82ad-b70261676127"/>
-            </rectangle>
-            <rectangle>
-                <reportElement x="374" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="23786173-cafb-4582-8b0c-263e4dd90436"/>
-            </rectangle>
-            <image>
-                <reportElement x="300" y="10" width="74" height="43" uuid="8cd58008-c27e-4ca7-9bbb-715b5ab6783a"/>
-                <imageExpression><![CDATA["C:/Users/Usuario/Pictures/MATRIZ-OBRAS-01.png"]]></imageExpression>
-            </image>
-            <image hAlign="Left">
-                <reportElement x="220" y="10" width="80" height="43" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
-                <imageExpression><![CDATA["C:/Users/Usuario/Pictures/escudo-muni-asuncion-02.png"]]></imageExpression>
-            </image>
-            <frame>
-                <reportElement x="231" y="154" width="100" height="50" uuid="3fc9625c-abd3-437e-8128-c89d52804889"/>
-                <subreport>
-                    <reportElement x="0" y="0" width="100" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557"/>
-                    <dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE}]]></dataSourceExpression>
-                    <subreportExpression><![CDATA[$P{SUBREPORT_PATH} + "customFields.jasper"]]></subreportExpression>
-                </subreport>
-            </frame>
-            <rectangle>
-                <reportElement x="259" y="50" width="80" height="90" uuid="b843ef51-15ff-45d4-9d61-16348b6bf26c"/>
-            </rectangle>
-            <rectangle>
-                <reportElement x="259" y="54" width="79" height="87" forecolor="#AD3F3D" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
-                <graphicElement>
-                    <pen lineWidth="11.0" lineStyle="Dashed"/>
-                </graphicElement>
-            </rectangle>
-        </band>
-    </detail>
-    <columnFooter>
-        <band/>
-    </columnFooter>
-    <pageFooter>
-        <band height="41"/>
-    </pageFooter>
-    <summary>
-        <band/>
-    </summary>
+	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="SUBREPORT_PATH" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="subject" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="22" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="261">
+			<rectangle>
+				<reportElement x="220" y="10" width="155" height="240" forecolor="#EBEBEB" backcolor="#EDEDED" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="31067c70-f2a8-410b-82ad-b70261676127"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="374" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="23786173-cafb-4582-8b0c-263e4dd90436"/>
+			</rectangle>
+			<image>
+				<reportElement x="300" y="10" width="74" height="43" uuid="8cd58008-c27e-4ca7-9bbb-715b5ab6783a"/>
+				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/MATRIZ-OBRAS-01.png"]]></imageExpression>
+			</image>
+			<image hAlign="Left">
+				<reportElement x="220" y="10" width="80" height="43" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
+				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/escudo-muni-asuncion-02.png"]]></imageExpression>
+			</image>
+			<frame>
+				<reportElement x="224" y="150" width="150" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+				<subreport>
+					<reportElement x="8" y="3" width="140" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
+						<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
+						<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
+						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
+					</reportElement>
+					<dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE}]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_PATH} + "customFields.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<rectangle>
+				<reportElement x="259" y="50" width="80" height="90" uuid="b843ef51-15ff-45d4-9d61-16348b6bf26c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="259" y="54" width="79" height="87" forecolor="#AD3F3D" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
+				<graphicElement>
+					<pen lineWidth="11.0" lineStyle="Dashed"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="41"/>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
 </jasperReport>

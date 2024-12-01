@@ -43,15 +43,15 @@ public class IssueController {
         }
     }
 
-    @GetMapping("/export/pdf/{id}")
-    public ResponseEntity<byte[]> exportPdfForIssue(@PathVariable("id") int id) {
+    @GetMapping("/front/pdf/{id}")
+    public ResponseEntity<byte[]> exportPdfForIssueFront(@PathVariable("id") int id) {
         try {
             IssuesResponse issuesResponse = redmineService.getIssues();
             Issue issue = issuesResponse.getIssues().stream()
                     .filter(i -> i.getId() == id)
                     .findFirst()
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
-            byte[] pdfBytes = redmineService.exportReport(issue);
+            byte[] pdfBytes = redmineService.exportReportFront(issue);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDisposition(ContentDisposition.builder("attachment")
@@ -65,4 +65,24 @@ public class IssueController {
         }
     }
 
+    @GetMapping("/back/pdf/{id}")
+    public ResponseEntity<byte[]> exportPdfForIssueBack(@PathVariable("id") int id) {
+        try {
+            IssuesResponse issuesResponse = redmineService.getIssues();
+            Issue issue = issuesResponse.getIssues().stream()
+                    .filter(i -> i.getId() == id)
+                    .findFirst()
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
+            byte[] pdfBytes = redmineService.exportReportBack(issue);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDisposition(ContentDisposition.builder("attachment")
+                    .filename("issue_" + id + "_report.pdf")
+                    .build());
+            return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
