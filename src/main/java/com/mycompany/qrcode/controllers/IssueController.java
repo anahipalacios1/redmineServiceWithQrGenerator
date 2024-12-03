@@ -34,6 +34,10 @@ public class IssueController {
                     .filter(i -> i.getId() == id)
                     .findFirst()
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
+
+            // Agregar URL dinámica al modelo
+            String issueUrl = "http://localhost:8080/issue?id=" + id;
+            model.addAttribute("issueUrl", issueUrl);
             model.addAttribute("issue", issue);
             return "seleccionar_id";  // Retorna la vista JSP "seleccionar_id"
         } catch (Exception e) {

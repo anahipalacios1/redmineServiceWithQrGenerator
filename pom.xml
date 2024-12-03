@@ -55,6 +55,26 @@
             <version>6.20.1</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.21.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-all</artifactId>
+            <version>1.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>xmlgraphics-commons</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
     
     <repositories>
@@ -65,6 +85,10 @@
         <repository>
             <id>apache</id>
             <url>https://repository.apache.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>sourceforge</id>
+            <url>https://sourceforge.net/projects/barcode4j/repository</url>
         </repository>
     </repositories>
 
