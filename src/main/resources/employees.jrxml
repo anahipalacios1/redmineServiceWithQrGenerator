@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="595" pageHeight="842" columnWidth="595" columnSpacing="110" leftMargin="0" rightMargin="0" topMargin="14" bottomMargin="14" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
+	<parameter name="PHOTO" class="byte[]"/>
 	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="SUBREPORT_PATH" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
@@ -26,24 +27,10 @@
 			<rectangle>
 				<reportElement x="220" y="10" width="155" height="240" forecolor="#EBEBEB" backcolor="#EDEDED" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
 			</rectangle>
-			<rectangle>
-				<reportElement x="220" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="31067c70-f2a8-410b-82ad-b70261676127"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="374" y="10" width="1" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="23786173-cafb-4582-8b0c-263e4dd90436"/>
-			</rectangle>
-			<image>
-				<reportElement x="300" y="10" width="74" height="43" uuid="8cd58008-c27e-4ca7-9bbb-715b5ab6783a"/>
-				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/MATRIZ-OBRAS-01.png"]]></imageExpression>
-			</image>
-			<image hAlign="Left">
-				<reportElement x="220" y="10" width="80" height="43" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
-				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/escudo-muni-asuncion-02.png"]]></imageExpression>
-			</image>
 			<frame>
-				<reportElement x="250" y="136" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+				<reportElement x="250" y="145" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
 				<subreport>
-					<reportElement x="8" y="2" width="112" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
+					<reportElement x="8" y="3" width="112" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
 						<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
 						<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
 						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
@@ -53,16 +40,37 @@
 				</subreport>
 			</frame>
 			<rectangle>
-				<reportElement x="259" y="50" width="71" height="79" uuid="b843ef51-15ff-45d4-9d61-16348b6bf26c"/>
+				<reportElement x="259" y="58" width="71" height="79" uuid="b843ef51-15ff-45d4-9d61-16348b6bf26c"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="264" y="54" width="71" height="75" forecolor="#AD3F3D" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
+				<reportElement x="264" y="62" width="71" height="75" forecolor="#AD3F3D" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
 				<graphicElement>
-					<pen lineWidth="11.0" lineStyle="Dashed"/>
+					<pen lineWidth="11.0" lineStyle="Solid"/>
 				</graphicElement>
 			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="250" width="155" height="2" forecolor="#B33B39" backcolor="#B34D4B" uuid="2caf642b-2bbb-4c36-8f51-0a9c3053398b"/>
+			</rectangle>
+			<image>
+				<reportElement x="262" y="63" width="75" height="77" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
+				<imageExpression><![CDATA[$P{PHOTO}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="220" y="10" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="9973971b-74c9-4bdf-be60-d0db20a5d6d9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="374" y="10" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="d352a168-b4f5-41df-80b1-f193983b8b9f"/>
+			</rectangle>
+			<image>
+				<reportElement x="300" y="10" width="74" height="43" uuid="0a95a303-3446-4091-aa52-716bb79c8c28"/>
+				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/MATRIZ-OBRAS-01.png"]]></imageExpression>
+			</image>
+			<image hAlign="Left">
+				<reportElement x="220" y="10" width="80" height="43" uuid="6bfe50b8-a711-4b0d-bd94-5579c2a160a7"/>
+				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/escudo-muni-asuncion-02.png"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement mode="Transparent" x="252" y="21" width="47" height="19" uuid="7d2a4916-e67f-494c-9959-f0d5c7f5451c"/>
+				<reportElement mode="Transparent" x="252" y="21" width="47" height="19" uuid="8dbf8c53-6b5b-4309-90d6-0fd4b2f2ecec"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.0" lineColor="#EDEDED"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#EDEDED"/>
@@ -75,9 +83,6 @@
 				</textElement>
 				<text><![CDATA[Municipalidad de Asunción]]></text>
 			</staticText>
-			<rectangle>
-				<reportElement x="220" y="250" width="155" height="2" forecolor="#B33B39" backcolor="#B34D4B" uuid="2caf642b-2bbb-4c36-8f51-0a9c3053398b"/>
-			</rectangle>
 		</band>
 	</detail>
 	<columnFooter>

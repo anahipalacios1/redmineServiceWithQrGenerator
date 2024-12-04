@@ -42,9 +42,9 @@
 				<imageExpression><![CDATA["C:/Users/Usuario/Pictures/escudo-muni-asuncion-02.png"]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement x="225" y="60" width="148" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+				<reportElement x="224" y="58" width="148" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
 				<subreport>
-					<reportElement x="1" y="0" width="148" height="60" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
+					<reportElement x="0" y="0" width="148" height="60" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
 						<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
 						<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
 						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
