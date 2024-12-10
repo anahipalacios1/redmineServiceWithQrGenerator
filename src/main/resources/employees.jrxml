@@ -3,7 +3,8 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="595" pageHeight="842" columnWidth="595" columnSpacing="110" leftMargin="0" rightMargin="0" topMargin="14" bottomMargin="14" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
 	<parameter name="PHOTO" class="byte[]"/>
 	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-	<parameter name="SUBREPORT_PATH" class="java.lang.String"/>
+	<parameter name="SUBREPORT_PATH"  class="net.sf.jasperreports.engine.JasperReport"/>
+        <parameter name="PHOTO_FRONT" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="subject" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
@@ -29,7 +30,7 @@
 			</rectangle>
 			<image>
 				<reportElement x="220" y="10" width="155" height="240" uuid="d05471e5-60dd-4596-8b7c-0860275baa1f"/>
-				<imageExpression><![CDATA["C:/Users/Usuario/Downloads/Identificación empresa Gafete o credencial Formal corporativo Rojo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{PHOTO_FRONT}]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement x="245" y="147" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
@@ -40,7 +41,7 @@
 						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
 					</reportElement>
 					<dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE}]]></dataSourceExpression>
-					<subreportExpression><![CDATA[$P{SUBREPORT_PATH} + "customFields.jasper"]]></subreportExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_PATH}]]></subreportExpression>
 				</subreport>
 			</frame>
 			<rectangle>

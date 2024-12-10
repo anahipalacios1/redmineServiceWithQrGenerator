@@ -27,7 +27,7 @@ public class IssuesReportGenerator {
     private JasperPrint getReport(IssuesResponse response) throws FileNotFoundException, JRException {
         List<Issue> issuesList = response.getIssues();
         Map<String, Object> params = new HashMap<String, Object>();
-        params.put("fiscalizadoresData", new JRBeanCollectionDataSource(issuesList)); 
+        params.put("fiscalizadoresData", new JRBeanCollectionDataSource(issuesList));
         JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(
                 ResourceUtils.getFile("classpath:employees.jrxml")
                         .getAbsolutePath()), params, new JREmptyDataSource());

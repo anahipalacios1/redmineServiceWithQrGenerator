@@ -75,6 +75,8 @@ public class RedmineService {
     public byte[] exportReportFront(Issue issue) throws JRException, IOException {
         File file = ResourceUtils.getFile("classpath:employees.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+         File subReportFile = ResourceUtils.getFile("classpath:customFields.jrxml");
+        JasperReport subReport = JasperCompileManager.compileReport(subReportFile.getAbsolutePath());
         List<Issue> issueList = new ArrayList<>();
         issueList.add(issue);
         JRBeanCollectionDataSource issueDataSource = new JRBeanCollectionDataSource(issueList);
@@ -97,11 +99,14 @@ public class RedmineService {
         if (fotoId != null) {
             fotografia = obtenerImagenDesdeRedmine(fotoId);
         }
+        String imagePath = ResourceUtils.getFile("classpath:img/Identificación empresa Gafete o credencial Formal corporativo Rojo.png").getAbsolutePath();
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Developer");
         parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
-        parameters.put("SUBREPORT_PATH", "C:/Users/Usuario/JaspersoftWorkspace/MyReports/");
+        parameters.put("SUBREPORT_PATH", subReport);
         parameters.put("PHOTO", fotografia);
+        parameters.put("PHOTO_FRONT", imagePath);
+        
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, issueDataSource);
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
@@ -165,16 +170,16 @@ public class RedmineService {
     }
 
     public byte[] exportReportBack(Issue issue) throws JRException, FileNotFoundException {
-        // Cargar el archivo JRXML
         File file = ResourceUtils.getFile("classpath:employeesBack.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
 
-        // Crear una lista con el issue
+        File subReportFile = ResourceUtils.getFile("classpath:customFieldsBack.jrxml");
+        JasperReport subReport = JasperCompileManager.compileReport(subReportFile.getAbsolutePath());
+
         List<Issue> issueList = new ArrayList<>();
         issueList.add(issue);
         JRBeanCollectionDataSource issueDataSource = new JRBeanCollectionDataSource(issueList);
 
-        // Filtrar campos personalizados relevantes
         List<CustomField> customFields = issue.getCustomFields();
         List<CustomField> filteredCustomFields = customFields.stream()
                 .filter(cf -> cf.getName().equals("Nombre")
@@ -186,20 +191,17 @@ public class RedmineService {
                 .collect(Collectors.toList());
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
 
-        // Generar la URL dinámica para el QR
         String qrCodeUrl = "http://localhost:8080/issue?id=" + issue.getId();
+        String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
 
-        // Configurar los parámetros del reporte
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Developer");
         parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
-        parameters.put("SUBREPORT_PATH", "C:/Users/Usuario/JaspersoftWorkspace/MyReports/");
-        parameters.put("QR_CODE_DATA", qrCodeUrl); // Añadir la URL dinámica
+        parameters.put("SUBREPORT", subReport);
+        parameters.put("QR_CODE_DATA", qrCodeUrl);
+        parameters.put("PHOTO", imagePath);
 
-        // Generar el reporte
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, issueDataSource);
-
-        // Exportar a PDF
         return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 }
