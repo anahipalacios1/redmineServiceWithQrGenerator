@@ -1,68 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="595" pageHeight="842" columnWidth="595" columnSpacing="110" leftMargin="0" rightMargin="0" topMargin="14" bottomMargin="14" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="150" pageHeight="250" columnWidth="150" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isSummaryNewPage="false" isIgnorePagination="true" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<parameter name="PHOTO" class="byte[]"/>
 	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
-	<parameter name="SUBREPORT_PATH"  class="net.sf.jasperreports.engine.JasperReport"/>
-        <parameter name="PHOTO_FRONT" class="java.lang.String"/>
+	<parameter name="SUBREPORT_PATH" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="PHOTO_FRONT" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="subject" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
 	<background>
-		<band/>
+		<band height="0"/>
 	</background>
-	<title>
-		<band height="22" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
-		</band>
-	</title>
 	<pageHeader>
-		<band/>
+		<band height="0"/>
 	</pageHeader>
 	<columnHeader>
-		<band/>
+		<band height="0"/>
 	</columnHeader>
 	<detail>
-		<band height="261">
+		<band height="249">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<rectangle>
-				<reportElement x="220" y="10" width="155" height="240" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
+				<reportElement x="0" y="0" width="155" height="249" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
 			</rectangle>
 			<image>
-				<reportElement x="220" y="10" width="155" height="240" uuid="d05471e5-60dd-4596-8b7c-0860275baa1f"/>
+				<reportElement x="0" y="0" width="155" height="249" uuid="d05471e5-60dd-4596-8b7c-0860275baa1f"/>
 				<imageExpression><![CDATA[$P{PHOTO_FRONT}]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement x="245" y="147" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+				<reportElement x="25" y="137" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
 				<subreport>
-					<reportElement x="6" y="2" width="112" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
-						<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
-						<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
-						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
-					</reportElement>
+					<reportElement x="6" y="2" width="112" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557"/>
 					<dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE}]]></dataSourceExpression>
 					<subreportExpression><![CDATA[$P{SUBREPORT_PATH}]]></subreportExpression>
 				</subreport>
 			</frame>
 			<rectangle>
-				<reportElement x="260" y="80" width="59" height="59" forecolor="#050505" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
+				<reportElement x="40" y="70" width="59" height="59" forecolor="#050505" uuid="e6a7dd8e-c00f-4a81-9065-7034c3316775"/>
 				<graphicElement>
 					<pen lineWidth="11.0" lineStyle="Solid"/>
 				</graphicElement>
 			</rectangle>
 			<image>
-				<reportElement x="260" y="80" width="59" height="59" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
+				<reportElement x="40" y="70" width="59" height="59" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
 				<imageExpression><![CDATA[$P{PHOTO}]]></imageExpression>
 			</image>
 		</band>
 	</detail>
 	<columnFooter>
-		<band/>
+		<band height="0"/>
 	</columnFooter>
-	<pageFooter>
-		<band height="41"/>
-	</pageFooter>
 	<summary>
-		<band/>
+		<band height="0"/>
 	</summary>
 </jasperReport>
