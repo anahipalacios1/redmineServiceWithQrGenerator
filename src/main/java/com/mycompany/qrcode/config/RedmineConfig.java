@@ -16,6 +16,9 @@ public class RedmineConfig {
     @Value("${redmine.api.url}")
     private String url;
 
+    @Value("${redmine.issue.api.url}")
+    private String urlQr;
+
     @Value("${redmine.api.key}")
     private String key;
 
@@ -25,5 +28,9 @@ public class RedmineConfig {
 
     public String getKey() {
         return key;
+    }
+
+    public String getUrlQr() {
+        return urlQr;
     }
 }

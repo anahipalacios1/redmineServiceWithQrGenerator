@@ -191,7 +191,7 @@ public class RedmineService {
                 .collect(Collectors.toList());
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
 
-        String qrCodeUrl = redmineConfig.getUrl() + "/issues/" + issue.getId();
+        String qrCodeUrl = redmineConfig.getUrlQr()+ "/issues/" + issue.getId();
         String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
 
         Map<String, Object> parameters = new HashMap<>();
