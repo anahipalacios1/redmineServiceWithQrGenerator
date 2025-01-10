@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="595" pageHeight="842" columnWidth="595" columnSpacing="110" leftMargin="0" rightMargin="0" topMargin="14" bottomMargin="14" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="160" pageHeight="250" columnWidth="160" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
 	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="SUBREPORT" class="net.sf.jasperreports.engine.JasperReport"/>
 	<parameter name="QR_CODE_DATA" class="java.lang.String"/>
-        <parameter name="PHOTO" class="java.lang.String"/>
+	<parameter name="PHOTO" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="subject" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
 	<background>
 		<band/>
 	</background>
-	<title>
-		<band height="22" splitType="Stretch">
-			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
-		</band>
-	</title>
 	<pageHeader>
 		<band/>
 	</pageHeader>
@@ -23,25 +18,25 @@
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="261">
+		<band height="248">
 			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<rectangle>
-				<reportElement x="220" y="10" width="155" height="240" forecolor="#EBEBEB" backcolor="#EDEDED" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
+				<reportElement x="2" y="2" width="155" height="245" forecolor="#EBEBEB" backcolor="#EDEDED" uuid="4fd920eb-5654-4473-8f59-a007009808cc"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="220" y="10" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="31067c70-f2a8-410b-82ad-b70261676127"/>
+				<reportElement x="2" y="2" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="31067c70-f2a8-410b-82ad-b70261676127"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="373" y="10" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="23786173-cafb-4582-8b0c-263e4dd90436"/>
+				<reportElement x="155" y="2" width="2" height="43" forecolor="#B33B39" backcolor="#B34D4B" uuid="23786173-cafb-4582-8b0c-263e4dd90436"/>
 			</rectangle>
 			<image hAlign="Left">
-				<reportElement x="240" y="10" width="100" height="43" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
+				<reportElement x="22" y="2" width="100" height="43" uuid="703350e0-9fdb-4c7a-94d9-55146dd7611f"/>
 				<imageExpression><![CDATA[$P{PHOTO}]]></imageExpression>
 			</image>
 			<frame>
-				<reportElement x="224" y="58" width="148" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+				<reportElement x="6" y="54" width="148" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
 				<subreport>
-					<reportElement x="0" y="0" width="148" height="60" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
+					<reportElement x="-1" y="-4" width="148" height="60" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557">
 						<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
 						<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
 						<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
@@ -51,7 +46,7 @@
 				</subreport>
 			</frame>
 			<staticText>
-				<reportElement mode="Transparent" x="278" y="22" width="70" height="27" uuid="7d2a4916-e67f-494c-9959-f0d5c7f5451c"/>
+				<reportElement mode="Transparent" x="60" y="14" width="70" height="27" uuid="7d2a4916-e67f-494c-9959-f0d5c7f5451c"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.0" lineColor="#EDEDED"/>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#EDEDED"/>
@@ -66,10 +61,10 @@
 de Asunción]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="220" y="250" width="155" height="2" forecolor="#B33B39" backcolor="#B34D4B" uuid="2caf642b-2bbb-4c36-8f51-0a9c3053398b"/>
+				<reportElement x="2" y="242" width="155" height="2" forecolor="#B33B39" backcolor="#B34D4B" uuid="2caf642b-2bbb-4c36-8f51-0a9c3053398b"/>
 			</rectangle>
 			<componentElement>
-				<reportElement x="261" y="173" width="77" height="68" uuid="7232bfd8-ed7f-4697-94ad-33eed808b5cd"/>
+				<reportElement x="43" y="165" width="74" height="65" uuid="7232bfd8-ed7f-4697-94ad-33eed808b5cd"/>
 				<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<jr:codeExpression><![CDATA[$P{QR_CODE_DATA}]]></jr:codeExpression>
 				</jr:QRCode>
@@ -79,9 +74,6 @@ de Asunción]]></text>
 	<columnFooter>
 		<band/>
 	</columnFooter>
-	<pageFooter>
-		<band height="41"/>
-	</pageFooter>
 	<summary>
 		<band/>
 	</summary>
