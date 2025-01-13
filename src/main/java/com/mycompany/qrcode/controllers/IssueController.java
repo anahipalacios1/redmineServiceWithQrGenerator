@@ -78,7 +78,7 @@ public class IssueController {
             }
 
             // Llamar al servicio para generar el PDF, pasando solo el Issue
-            byte[] pdfBytes = redmineService.exportReportFront(issue); // Solo el issue
+            byte[] pdfBytes = redmineService.exportCombinedReport(issue); // Solo el issue
 
             if (pdfBytes == null || pdfBytes.length == 0) {
                 throw new RuntimeException("El PDF generado está vacío.");
