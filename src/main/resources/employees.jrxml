@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="employees" pageWidth="150" pageHeight="250" columnWidth="150" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ea9d9eab-78ea-4cb9-adce-7588ae6a483e">
-    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
     <parameter name="PHOTO" class="byte[]"/>
     <parameter name="PHOTO_PATH" class="java.lang.String"/>
     <parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
@@ -56,9 +55,6 @@
                     <text><![CDATA[Municipalidad 
 de Asunción]]></text>
                 </staticText>
-                <rectangle>
-                    <reportElement x="2" y="242" width="145" height="1" forecolor="#B33B39" backcolor="#B34D4B" uuid="b8d7e47b-50a4-49cb-bdfa-ad0ed6eb2dc3"/>
-                </rectangle>
                 <componentElement>
                     <reportElement x="39" y="170" width="73" height="64" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
                     <jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -88,7 +84,7 @@ de Asunción]]></text>
                 <imageExpression><![CDATA[$P{PHOTO_FRONT}]]></imageExpression>
             </image>
             <frame>
-                <reportElement x="33" y="150" width="124" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
+                <reportElement x="33" y="150" width="112" height="60" uuid="05d94d84-40ae-447e-86cd-4ff5399eebfa"/>
                 <subreport>
                     <reportElement x="0" y="0" width="112" height="50" uuid="5126298a-80e8-4295-b2eb-6a5ff3598557"/>
                     <dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE}]]></dataSourceExpression>

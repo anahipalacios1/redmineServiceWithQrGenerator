@@ -34,12 +34,16 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ResourceUtils;
 
 @Service
 public class RedmineService {
-
+    
+    @Value("${app.url}")
+    private String appUrl;
+    
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final RedmineConfig redmineConfig;
@@ -115,7 +119,7 @@ public class RedmineService {
         JRBeanCollectionDataSource customFieldsDataSourceBack = new JRBeanCollectionDataSource(filteredCustomFieldsBack);
 
 
-        String qrCodeUrl = "http://localhost:8080" + "/issue?id=" + issue.getId();
+        String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
 
         String photoPath = ResourceUtils.getFile("classpath:img/Identificación empresa Gafete o credencial Formal corporativo Rojo.png").getAbsolutePath();
         String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();

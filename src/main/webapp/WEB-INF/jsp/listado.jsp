@@ -67,8 +67,7 @@
                     <a href="/qr/<%= issue.getId() %>" class="btn btn-generate-qr">Generar QR</a>
                     
                     <!-- Botón de exportar a PDF para cada Issue -->
-                    <a href="/front/pdf/<%= issue.getId() %>" class="btn btn-export-pdf">Exportar carnet Frontal</a>
-                    <a href="/back/pdf/<%= issue.getId() %>" class="btn btn-export-pdf">Exportar carnet Dorsal</a>
+                    <a href="/front/pdf/<%= issue.getId() %>" class="btn btn-export-pdf">Exportar carnet</a>
                 </div>
             <% } %>
         <% } else { %>
