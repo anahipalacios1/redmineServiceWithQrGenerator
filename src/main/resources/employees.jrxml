@@ -9,6 +9,12 @@
 	<parameter name="PHOTO_FRONT" class="java.lang.String"/>
 	<parameter name="SUBREPORT_PATH_BACK" class="net.sf.jasperreports.engine.JasperReport"/>
 	<parameter name="QR_CODE_DATA" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="apellido" class="java.lang.String"/>
+	<parameter name="cargo" class="java.lang.String"/>
+	<parameter name="codigo_de_personal" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="correo" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
 	<field name="subject" class="java.lang.String"/>
 	<field name="description" class="java.lang.String"/>
@@ -29,16 +35,91 @@
 					<imageExpression><![CDATA[$P{PHOTO_PATH}]]></imageExpression>
 				</image>
 				<frame>
-					<reportElement x="4" y="56" width="140" height="60" uuid="7b3e7e3f-66dc-4f94-9dbb-bf05e8133d62"/>
-					<subreport>
-						<reportElement x="2" y="0" width="138" height="60" uuid="1b74b913-3b02-48fa-a065-bd34c22ddf83">
-							<property name="net.sf.jasperreports.export.pdf.field.border.style" value="Solid"/>
-							<property name="net.sf.jasperreports.export.pdf.field.read.only" value="true"/>
-							<property name="net.sf.jasperreports.export.pdf.field.type" value="List"/>
-						</reportElement>
-						<dataSourceExpression><![CDATA[$P{CUSTOM_FIELDS_DATASOURCE_BACK}]]></dataSourceExpression>
-						<subreportExpression><![CDATA[$P{SUBREPORT_PATH_BACK}]]></subreportExpression>
-					</subreport>
+					<reportElement x="4" y="56" width="140" height="104" uuid="7b3e7e3f-66dc-4f94-9dbb-bf05e8133d62"/>
+					<staticText>
+						<reportElement x="1" y="4" width="42" height="10" uuid="0d77bb45-8d18-479f-80c7-7c0cdad895ff"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Nombre:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="4" width="94" height="10" uuid="07db7f48-eac8-4e43-accb-3bcf7834f6cf"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="18" width="42" height="10" uuid="d1df4e14-62fc-418f-adad-f9e6efd692eb"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Apellido:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="18" width="94" height="10" uuid="9f76891c-0f41-4edd-a0a6-82f244e5b16f"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{apellido}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="32" width="42" height="10" uuid="1c75cc2c-f673-4fbd-a05f-b0e249141cd7"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Cargo:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="32" width="94" height="10" uuid="17589670-8069-4d11-92ae-45fb99dfca9e"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="47" width="42" height="10" uuid="3667d36c-1f8b-4cf5-bb08-b733b95806d1"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Cod. Personal:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="47" width="94" height="10" uuid="b3ab2338-eebf-4612-adec-7a6934c850fa"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{codigo_de_personal}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="61" width="42" height="10" uuid="81969867-3d45-42ca-b41c-2d6c7fd75327"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Telefono:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="61" width="94" height="10" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="1" y="75" width="42" height="10" uuid="c15f4e15-54a1-4f90-89fb-033d3d8d6a7a"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<text><![CDATA[Correo:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="43" y="75" width="94" height="10" uuid="b053e253-cf43-4846-b702-8ffeb91ec77c"/>
+						<textElement>
+							<font size="7"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{correo}]]></textFieldExpression>
+					</textField>
 				</frame>
 				<staticText>
 					<reportElement mode="Transparent" x="60" y="16" width="70" height="27" uuid="bd7fc3be-8f1a-443e-b870-3e4cfcc9112f"/>
@@ -59,7 +140,7 @@ de Asunción]]></text>
 					<reportElement x="0" y="243" width="150" height="3" forecolor="#B33B39" backcolor="#B34D4B" uuid="b8d7e47b-50a4-49cb-bdfa-ad0ed6eb2dc3"/>
 				</rectangle>
 				<componentElement>
-					<reportElement x="39" y="170" width="73" height="64" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
+					<reportElement isPrintRepeatedValues="false" x="39" y="170" width="73" height="64" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
 					<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 						<jr:codeExpression><![CDATA[$P{QR_CODE_DATA}]]></jr:codeExpression>
 					</jr:QRCode>

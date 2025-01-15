@@ -40,10 +40,10 @@ import org.springframework.util.ResourceUtils;
 
 @Service
 public class RedmineService {
-    
+
     @Value("${app.url}")
     private String appUrl;
-    
+
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final RedmineConfig redmineConfig;
@@ -107,28 +107,32 @@ public class RedmineService {
         if (fotoId != null) {
             fotografia = obtenerImagenDesdeRedmine(fotoId);
         }
-        
-        List<CustomField> filteredCustomFieldsBack = customFields.stream()
-                .filter(cf -> cf.getName().equals("Nombre")
-                || cf.getName().equals("Apellido")
-                || cf.getName().equals("Cargo")
-                || cf.getName().equals("Codigo de Personal")
-                || cf.getName().equals("Correo")
-                || cf.getName().equals("Telefono"))
-                .collect(Collectors.toList());
-        JRBeanCollectionDataSource customFieldsDataSourceBack = new JRBeanCollectionDataSource(filteredCustomFieldsBack);
 
+        Map<String, Object> parameters = new HashMap<>();
+
+        for (CustomField cf : customFields) {
+            parameters.put(cf.getName().toLowerCase().trim().replaceAll(" ", "_"), cf.getValue());
+        }
+        
+//        List<CustomField> filteredCustomFieldsBack = customFields.stream()
+//                .filter(cf -> cf.getName().equals("Nombre")
+//                || cf.getName().equals("Apellido")
+//                || cf.getName().equals("Cargo")
+//                || cf.getName().equals("Codigo de Personal")
+//                || cf.getName().equals("Correo")
+//                || cf.getName().equals("Telefono"))
+//                .collect(Collectors.toList());
+//        JRBeanCollectionDataSource customFieldsDataSourceBack = new JRBeanCollectionDataSource(filteredCustomFieldsBack);
 
         String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
 
         String photoPath = ResourceUtils.getFile("classpath:img/Identificación empresa Gafete o credencial Formal corporativo Rojo.png").getAbsolutePath();
         String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
 
-        Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Developer");
         parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
         parameters.put("SUBREPORT_PATH_FRONT", subReportFront);
-        parameters.put("CUSTOM_FIELDS_DATASOURCE_BACK", customFieldsDataSourceBack);
+//        parameters.put("CUSTOM_FIELDS_DATASOURCE_BACK", customFieldsDataSourceBack);
         parameters.put("SUBREPORT_PATH_BACK", subReportBack);
         parameters.put("PHOTO", fotografia);
         parameters.put("PHOTO_FRONT", photoPath);
