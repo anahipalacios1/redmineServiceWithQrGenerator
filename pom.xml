@@ -33,11 +33,20 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <dependency>
+        <!--HABILITAR LIBRERIA PARA DESPLIEGUE EN UN TOMCAT EXTERNO-->
+        <!--dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
+        </dependency-->
+        <!--TOMCAT EXTERNO-->
+        <!--HABILITAR LIBRERIA PARA EJECUCION EN EL TOMCAT EMBEBIDO-->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>10.1.31</version>
         </dependency>
+        <!--TOMCAT EMBEBIDO-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
