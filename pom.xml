@@ -10,7 +10,7 @@
     <groupId>com.mycompany</groupId>
     <artifactId>QrCode</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>QrCode-1.0-SNAPSHOT</name>
     <properties>
         <java.version>17</java.version>
@@ -33,7 +33,7 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!--HABILITAR LIBRERIA PARA DESPLIEGUE EN UN TOMCAT EXTERNO-->
+         <!--HABILITAR LIBRERIA PARA DESPLIEGUE EN UN TOMCAT EXTERNO-->
         <!--dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
