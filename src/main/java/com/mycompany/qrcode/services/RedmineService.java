@@ -93,8 +93,7 @@ public class RedmineService {
                 .filter(cf -> cf.getName().equals("Nombre")
                 || cf.getName().equals("Apellido")
                 || cf.getName().equals("Cargo")
-                || cf.getName().equals("Sector")
-                || cf.getName().equals("Codigo de Personal"))
+                || cf.getName().equals("C.I."))
                 .collect(Collectors.toList());
 
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
@@ -114,19 +113,8 @@ public class RedmineService {
             parameters.put(cf.getName().toLowerCase().trim().replaceAll(" ", "_"), cf.getValue());
         }
         
-//        List<CustomField> filteredCustomFieldsBack = customFields.stream()
-//                .filter(cf -> cf.getName().equals("Nombre")
-//                || cf.getName().equals("Apellido")
-//                || cf.getName().equals("Cargo")
-//                || cf.getName().equals("Codigo de Personal")
-//                || cf.getName().equals("Correo")
-//                || cf.getName().equals("Telefono"))
-//                .collect(Collectors.toList());
-//        JRBeanCollectionDataSource customFieldsDataSourceBack = new JRBeanCollectionDataSource(filteredCustomFieldsBack);
-
         String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
 
-        String photoPath = ResourceUtils.getFile("classpath:img/Identificación empresa Gafete o credencial Formal corporativo Rojo.png").getAbsolutePath();
         String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
 
         parameters.put("createdBy", "Java Developer");
@@ -135,7 +123,6 @@ public class RedmineService {
 //        parameters.put("CUSTOM_FIELDS_DATASOURCE_BACK", customFieldsDataSourceBack);
         parameters.put("SUBREPORT_PATH_BACK", subReportBack);
         parameters.put("PHOTO", fotografia);
-        parameters.put("PHOTO_FRONT", photoPath);
         parameters.put("PHOTO_PATH", imagePath);
         parameters.put("QR_CODE_DATA", qrCodeUrl);
 
@@ -216,10 +203,10 @@ public class RedmineService {
         List<CustomField> filteredCustomFields = customFields.stream()
                 .filter(cf -> cf.getName().equals("Nombre")
                 || cf.getName().equals("Apellido")
-                || cf.getName().equals("Cargo")
-                || cf.getName().equals("Codigo de Personal")
-                || cf.getName().equals("Correo")
-                || cf.getName().equals("Telefono"))
+                || cf.getName().equals("C.I.")
+                || cf.getName().equals("Sector")
+                || cf.getName().equals("Departamento")
+                || cf.getName().equals("Unidad"))
                 .collect(Collectors.toList());
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
 
