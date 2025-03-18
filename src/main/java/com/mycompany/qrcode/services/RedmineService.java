@@ -115,7 +115,8 @@ public class RedmineService {
         
         String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
 
-        String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
+        String imagePath = ResourceUtils.getFile("classpath:img/logo.png").getAbsolutePath();
+        String imageAsu = ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").getAbsolutePath();
 
         parameters.put("createdBy", "Java Developer");
         parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
@@ -124,6 +125,7 @@ public class RedmineService {
         parameters.put("SUBREPORT_PATH_BACK", subReportBack);
         parameters.put("PHOTO", fotografia);
         parameters.put("PHOTO_PATH", imagePath);
+        parameters.put("ASU_ORDEN", imageAsu);
         parameters.put("QR_CODE_DATA", qrCodeUrl);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, issueDataSource);
@@ -203,7 +205,7 @@ public class RedmineService {
         List<CustomField> filteredCustomFields = customFields.stream()
                 .filter(cf -> cf.getName().equals("Nombre")
                 || cf.getName().equals("Apellido")
-                || cf.getName().equals("C.I.")
+                || cf.getName().equals("Cedula")
                 || cf.getName().equals("Sector")
                 || cf.getName().equals("Departamento")
                 || cf.getName().equals("Unidad"))
@@ -211,7 +213,7 @@ public class RedmineService {
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
 
         String qrCodeUrl = "http://localhost:8080" + "/issue?id=" + issue.getId();
-        String imagePath = ResourceUtils.getFile("classpath:img/escudo-muni-asuncion-02.png").getAbsolutePath();
+            String imagePath = ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").getAbsolutePath();
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Java Developer");
