@@ -29,35 +29,35 @@
 				<frame>
 					<reportElement x="5" y="10" width="140" height="124" uuid="7b3e7e3f-66dc-4f94-9dbb-bf05e8133d62"/>
 					<textField>
-						<reportElement x="27" y="0" width="94" height="17" forecolor="#333333" uuid="07db7f48-eac8-4e43-accb-3bcf7834f6cf"/>
+						<reportElement x="27" y="7" width="94" height="17" forecolor="#333333" uuid="07db7f48-eac8-4e43-accb-3bcf7834f6cf"/>
 						<textElement textAlignment="Center">
 							<font fontName="Arial Black" size="12"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="27" y="17" width="94" height="17" forecolor="#333333" uuid="9f76891c-0f41-4edd-a0a6-82f244e5b16f"/>
+						<reportElement x="27" y="22" width="94" height="17" forecolor="#333333" uuid="9f76891c-0f41-4edd-a0a6-82f244e5b16f"/>
 						<textElement textAlignment="Center">
 							<font fontName="Arial Black" size="12"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$P{apellido}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement isPrintRepeatedValues="false" x="27" y="35" width="94" height="20" forecolor="#333333" uuid="17589670-8069-4d11-92ae-45fb99dfca9e"/>
+						<reportElement isPrintRepeatedValues="false" x="27" y="40" width="94" height="20" forecolor="#333333" uuid="17589670-8069-4d11-92ae-45fb99dfca9e"/>
 						<textElement textAlignment="Center">
 							<font fontName="SansSerif" size="11"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$P{cedula}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="27" y="55" width="94" height="19" forecolor="#333333" uuid="b3ab2338-eebf-4612-adec-7a6934c850fa"/>
+						<reportElement x="27" y="60" width="94" height="19" forecolor="#333333" uuid="b3ab2338-eebf-4612-adec-7a6934c850fa"/>
 						<textElement textAlignment="Center">
 							<font fontName="SansSerif" size="9"/>
 						</textElement>
 						<textFieldExpression><![CDATA[$P{sector}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="27" y="74" width="93" height="27" forecolor="#333333" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
+						<reportElement x="27" y="80" width="93" height="20" forecolor="#333333" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
 						<textElement textAlignment="Center">
 							<font fontName="SansSerif" size="9"/>
 						</textElement>
@@ -72,7 +72,7 @@
 					</textField>
 				</frame>
 				<rectangle>
-					<reportElement x="0" y="243" width="150" height="7" forecolor="#B33B39" backcolor="#B34D4B" uuid="b8d7e47b-50a4-49cb-bdfa-ad0ed6eb2dc3"/>
+					<reportElement x="0" y="240" width="150" height="10" forecolor="#B33B39" backcolor="#B34D4B" uuid="b8d7e47b-50a4-49cb-bdfa-ad0ed6eb2dc3"/>
 				</rectangle>
 				<componentElement>
 					<reportElement isPrintRepeatedValues="false" x="44" y="134" width="65" height="56" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
@@ -120,20 +120,23 @@
 					<textFieldExpression><![CDATA[$P{nombre} + " " + $P{apellido}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="19" y="45" width="93" height="15" forecolor="#B80A07" uuid="7e4d249d-cdcf-4f7e-afb3-2a7b143fbd4d"/>
+					<reportElement x="19" y="39" width="93" height="15" forecolor="#B80A07" uuid="7e4d249d-cdcf-4f7e-afb3-2a7b143fbd4d"/>
 					<textElement textAlignment="Center">
 						<font fontName="Bookman Old Style" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA["C.I. "+ $P{cedula}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="19" y="24" width="94" height="12" forecolor="#B80A07" uuid="3739d977-e433-4e58-9e54-abd5c2216256"/>
+					<reportElement x="19" y="19" width="94" height="12" forecolor="#B80A07" uuid="3739d977-e433-4e58-9e54-abd5c2216256"/>
 					<textElement textAlignment="Center">
 						<font fontName="Bookman Old Style" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{cargo}]]></textFieldExpression>
 				</textField>
 			</frame>
+			<rectangle>
+				<reportElement x="0" y="240" width="150" height="10" forecolor="#B33B39" backcolor="#B34D4B" uuid="2d6bc2f7-92d5-4877-91cd-dc8fde2ab478"/>
+			</rectangle>
 		</band>
 	</detail>
 </jasperReport>
