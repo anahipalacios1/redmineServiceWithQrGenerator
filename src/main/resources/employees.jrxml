@@ -116,21 +116,21 @@
 				<textField>
 					<reportElement style="MyStyle" x="0" y="4" width="129" height="16" forecolor="#333333" uuid="ce202c4d-17d4-4eb1-9f21-2fe9e3fa7f68"/>
 					<textElement textAlignment="Center">
-						<font fontName="Bookman Old Style" size="11" isBold="true"/>
+						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{nombre}.toUpperCase() + " " + $P{apellido}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="MyStyle" x="19" y="39" width="93" height="15" forecolor="#B80A07" uuid="7e4d249d-cdcf-4f7e-afb3-2a7b143fbd4d"/>
 					<textElement textAlignment="Center">
-						<font fontName="Bookman Old Style" size="9"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA["C.I. "+ $P{cedula}]]></textFieldExpression>
 				</textField>
 				<textField>
 					<reportElement style="MyStyle" x="19" y="19" width="94" height="12" forecolor="#B80A07" uuid="3739d977-e433-4e58-9e54-abd5c2216256"/>
 					<textElement textAlignment="Center">
-						<font fontName="Bookman Old Style" size="9"/>
+						<font fontName="Arial" size="9"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$P{cargo}.toUpperCase()]]></textFieldExpression>
 				</textField>
