@@ -1,0 +1,8 @@
+<fontFamily name="Gotham">
+    <normal>fonts/Gotham/Gotham-Book.otf</normal>
+    <bold>fonts/Gotham/Gotham-Bold.otf</bold>
+    <medium>fonts/Gotham/Gotham-Medium.otf</medium>
+    <black>fonts/Gotham/Gotham-Black.otf</black>
+    <pdfEncoding>Identity-H</pdfEncoding>
+    <isPdfEmbedded>true</isPdfEmbedded>
+</fontFamily>
