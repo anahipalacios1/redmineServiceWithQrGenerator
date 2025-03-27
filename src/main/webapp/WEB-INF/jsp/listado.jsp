@@ -9,7 +9,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Listado Detallado de Fiscales - Municipalidad de Asunción</title>
+        <title>Listado de Fiscales - Municipalidad de Asunción</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
             body {
@@ -58,6 +58,7 @@
             <h1>Listado Detallado de Fiscales - Municipalidad de Asunción</h1>
         </div>
         <div class="container">
+            <input type="text" id="searchBox" class="form-control mb-3" placeholder="Buscar por nombre o apellido..." onkeyup="filterFiscales()">
             <%
                 List<Issue> issues = (List<Issue>) request.getAttribute("issues");
                 String error = (String) request.getAttribute("error");
@@ -99,44 +100,58 @@
                     }
             %>
 
-            <div class="issue-card">
-                <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
-                <!--<p>URL de la foto: <%= fotoUrl%></p>-->
-                <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
-                <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%= fotoUrl%>>
-                <% } else { %>
-                <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
-                <% } %>
+            <div class="issue-card" data-nombre="<%= (nombre != null ? nombre.toLowerCase() : "") + " " + (apellido != null ? apellido.toLowerCase() : "")%>">
+                    <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
+                    <!--<p>URL de la foto: <%= fotoUrl%></p>-->
+                    <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
+                    <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%= fotoUrl%>>
+                    <% } else { %>
+                    <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
+                    <% } %>
 
-                <div class="custom-fields">
-                    <% if (issue.getCustomFields() != null) {
-                            for (CustomField field : issue.getCustomFields()) {
-                                if ("Nombre".equals(field.getName())
-                                        || "Apellido".equals(field.getName())
-                                        || "Cédula".equals(field.getName())
-                                        || "Cargo".equals(field.getName())
-                                        || "Sector".equals(field.getName())
-                                        || "Departamento".equals(field.getName())
-                                        || "Unidad".equals(field.getName())) {
-                    %>
-                    <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
-                    <%
+                    <div class="custom-fields">
+                        <% if (issue.getCustomFields() != null) {
+                                for (CustomField field : issue.getCustomFields()) {
+                                    if ("Nombre".equals(field.getName())
+                                            || "Apellido".equals(field.getName())
+                                            || "Cédula".equals(field.getName())
+                                            || "Cargo".equals(field.getName())
+                                            || "Sector".equals(field.getName())
+                                            || "Departamento".equals(field.getName())
+                                            || "Unidad".equals(field.getName())) {
+                        %>
+                        <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
+                        <%
+                                }
                             }
-                        }
-                    } else {
-                    %>
-                    <p>No hay información disponible del fiscal.</p>
-                    <% }%>
+                        } else {
+                        %>
+                        <p>No hay información disponible del fiscal.</p>
+                        <% }%>
+                    </div>
+                    <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
                 </div>
-                <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
+                <% } %>
+                <% } else { %>
+                <div class="alert alert-info">No se encontraron issues de Redmine.</div>
+                <% }%>
             </div>
-            <% } %>
-            <% } else { %>
-            <div class="alert alert-info">No se encontraron issues de Redmine.</div>
-            <% }%>
-        </div>
+            <script>
+                function filterFiscales() {
+                    let input = document.getElementById("searchBox").value.toLowerCase();
+                    let fiscales = document.querySelectorAll(".issue-card");
 
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    fiscales.forEach(fiscal => {
+                        let nombreCompleto = fiscal.getAttribute("data-nombre") || ""; // Evita errores si el atributo está vacío
+                        if (nombreCompleto.includes(input)) {
+                            fiscal.style.display = "block";
+                        } else {
+                            fiscal.style.display = "none";
+                        }
+                    });
+                }
+            </script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>
