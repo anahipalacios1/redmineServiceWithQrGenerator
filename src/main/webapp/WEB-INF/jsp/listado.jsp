@@ -99,59 +99,72 @@
                         }
                     }
             %>
+            <div class="issue-card" 
+                 data-nombre="<%
+                     String cedula = "";
+                     if (issue.getCustomFields() != null) {
+                         for (CustomField field : issue.getCustomFields()) {
+                             if ("Cedula".equals(field.getName())) {
+                                 cedula = field.getValue().toString() != null ? field.getValue().toString() : "";
+                             }
+                         }
+                     }
+                     out.print((nombre != null ? nombre.toLowerCase() : "") + " "
+                             + (apellido != null ? apellido.toLowerCase() : "") + " "
+                             + cedula);
+                 %>">
 
-            <div class="issue-card" data-nombre="<%= (nombre != null ? nombre.toLowerCase() : "") + " " + (apellido != null ? apellido.toLowerCase() : "")%>">
-                    <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
-                    <!--<p>URL de la foto: <%= fotoUrl%></p>-->
-                    <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
-                    <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%= fotoUrl%>>
-                    <% } else { %>
-                    <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
-                    <% } %>
-
-                    <div class="custom-fields">
-                        <% if (issue.getCustomFields() != null) {
-                                for (CustomField field : issue.getCustomFields()) {
-                                    if ("Nombre".equals(field.getName())
-                                            || "Apellido".equals(field.getName())
-                                            || "Cédula".equals(field.getName())
-                                            || "Cargo".equals(field.getName())
-                                            || "Sector".equals(field.getName())
-                                            || "Departamento".equals(field.getName())
-                                            || "Unidad".equals(field.getName())) {
-                        %>
-                        <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
-                        <%
-                                }
-                            }
-                        } else {
-                        %>
-                        <p>No hay información disponible del fiscal.</p>
-                        <% }%>
-                    </div>
-                    <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
-                </div>
-                <% } %>
+                <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
+                <p>URL de la foto: <%= fotoUrl%></p>
+                <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
+                <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%= fotoUrl%>>
                 <% } else { %>
-                <div class="alert alert-info">No se encontraron issues de Redmine.</div>
-                <% }%>
-            </div>
-            <script>
-                function filterFiscales() {
-                    let input = document.getElementById("searchBox").value.toLowerCase();
-                    let fiscales = document.querySelectorAll(".issue-card");
+                <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
+                <% } %>
 
-                    fiscales.forEach(fiscal => {
-                        let nombreCompleto = fiscal.getAttribute("data-nombre") || ""; // Evita errores si el atributo está vacío
-                        if (nombreCompleto.includes(input)) {
-                            fiscal.style.display = "block";
-                        } else {
-                            fiscal.style.display = "none";
+                <div class="custom-fields">
+                    <% if (issue.getCustomFields() != null) {
+                            for (CustomField field : issue.getCustomFields()) {
+                                if ("Nombre".equals(field.getName())
+                                        || "Apellido".equals(field.getName())
+                                        || "Cédula".equals(field.getName())
+                                        || "Cargo".equals(field.getName())
+                                        || "Sector".equals(field.getName())
+                                        || "Departamento".equals(field.getName())
+                                        || "Unidad".equals(field.getName())) {
+                    %>
+                    <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
+                    <%
+                            }
                         }
-                    });
-                }
-            </script>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                    } else {
+                    %>
+                    <p>No hay información disponible del fiscal.</p>
+                    <% }%>
+                </div>
+                <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
+            </div>
+            <% } %>
+            <% } else { %>
+            <div class="alert alert-info">No se encontraron issues de Redmine.</div>
+            <% }%>
+        </div>
+        <script>
+            function filterFiscales() {
+                let input = document.getElementById("searchBox").value.toLowerCase();
+                let fiscales = document.querySelectorAll(".issue-card");
+
+                fiscales.forEach(fiscal => {
+                    let nombreCompleto = fiscal.getAttribute("data-nombre") || ""; // Evita errores si el atributo está vacío
+                    if (nombreCompleto.includes(input)) {
+                        fiscal.style.display = "block";
+                    } else {
+                        fiscal.style.display = "none";
+                    }
+                });
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>
