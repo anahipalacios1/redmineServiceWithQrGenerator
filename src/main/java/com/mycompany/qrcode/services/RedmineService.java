@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,9 @@ public class RedmineService {
 
     @Value("${app.url}")
     private String appUrl;
+
+    @Value("${redmine.issue.api.url}")
+    private String apiIssueUrl;
 
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
@@ -98,7 +102,7 @@ public class RedmineService {
 
         JRBeanCollectionDataSource customFieldsDataSource = new JRBeanCollectionDataSource(filteredCustomFields);
         Object fotoId = customFields.stream()
-                .filter(cf -> cf.getName().equals("Fotografía"))
+                .filter(cf -> cf.getName().equals("Fotografia"))
                 .map(CustomField::getValue)
                 .findFirst()
                 .orElse(null);
@@ -113,8 +117,16 @@ public class RedmineService {
                 .findFirst()
                 .orElse(null);
         byte[] fotografiaDto = null;
-        if (fotoId != null) {
+        if (fotoDto != null) {
             fotografiaDto = obtenerImagenDesdeRedmine(fotoDto);
+        }
+
+        if (fotoDto != null) {
+            fotografiaDto = obtenerImagenDesdeRedmine(fotoDto);
+        }
+
+        if (fotografiaDto == null) {
+            fotografiaDto = Files.readAllBytes(ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").toPath());
         }
 
         Map<String, Object> parameters = new HashMap<>();
@@ -144,7 +156,12 @@ public class RedmineService {
     }
 
     public byte[] obtenerImagenDesdeRedmine(Object fotoId) throws IOException {
-        String url = "https://redmine4.sudolabs.com.py/attachments/download/" + fotoId;
+        if (fotoId.toString().trim().isEmpty()) {
+            System.out.println("ACA VA A RETORNAR NULL");
+            return null;
+        }
+
+        String url = apiIssueUrl + "/attachments/download/" + fotoId;
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -153,7 +170,6 @@ public class RedmineService {
         HttpEntity<Void> requestEntity = new HttpEntity<>(headers);
 
         try {
-            // Realizar la solicitud GET
             ResponseEntity<byte[]> response = restTemplate.exchange(
                     url,
                     HttpMethod.GET,
@@ -161,43 +177,37 @@ public class RedmineService {
                     byte[].class
             );
 
-            // Verificar el tipo de contenido
             String contentType = response.getHeaders().getContentType().toString();
             System.out.println("Response Headers: " + response.getHeaders());
 
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
                 byte[] imageBytes = response.getBody();
 
-                // Verificar si el tipo de contenido es una imagen
                 if (!contentType.startsWith("image/")) {
                     String errorHtml = new String(response.getBody(), StandardCharsets.UTF_8);
                     throw new IOException("La respuesta no es una imagen. Content-Type: " + contentType + ". Respuesta HTML: " + errorHtml);
                 }
 
-                // Verificar si la imagen es válida
                 if (isValidImage(imageBytes)) {
                     return imageBytes;
                 } else {
                     throw new IOException("La imagen descargada no es válida.");
                 }
             } else {
-                // Capturar el cuerpo HTML si la respuesta no es válida
-                String errorHtml = new String(response.getBody(), StandardCharsets.UTF_8);
-                throw new IOException("No se pudo descargar la imagen desde Redmine. Código de estado: " + response.getStatusCode() + ". Respuesta HTML: " + errorHtml);
+                throw new IOException("No se pudo descargar la imagen desde Redmine. Código de estado: " + response.getStatusCode());
             }
         } catch (Exception e) {
             throw new IOException("Error al obtener la imagen desde Redmine: " + e.getMessage(), e);
         }
     }
 
-// Método para verificar si los bytes corresponden a una imagen válida
     private boolean isValidImage(byte[] imageBytes) {
         try {
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(imageBytes);
             BufferedImage bufferedImage = ImageIO.read(byteArrayInputStream);
-            return bufferedImage != null; // Si no es null, es una imagen válida
+            return bufferedImage != null;
         } catch (IOException e) {
-            return false; // Si ocurre un error, no es una imagen válida
+            return false;
         }
     }
 

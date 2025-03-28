@@ -78,23 +78,13 @@
 
                     if (issue.getCustomFields() != null) {
                         for (CustomField field : issue.getCustomFields()) {
-                            if ("Fotografía".trim().equals(field.getName().trim()) && field.getValue() != null) {
+                            if ("Fotografia".trim().equals(field.getName().trim()) && field.getValue() != null) {
                                 String fotoId = String.valueOf(field.getValue()).trim();
-
-                                for (CustomField field2 : issue.getCustomFields()) {
-                                    if ("Nombre".equals(field2.getName())) {
-                                        nombre = String.valueOf(field2.getValue()).trim();
-                                    } else if ("Apellido".equals(field2.getName())) {
-                                        apellido = String.valueOf(field2.getValue()).trim();
-                                    }
-                                }
-
                                 if (fotoId.matches("\\d+")) {
                                     fotoUrl = urlQr + "/attachments/download/" + fotoId + "?key=" + key;
                                 } else {
-                                    fotoUrl = fotoId; // Si no es un número, asumimos que ya es una URL válida
+                                    fotoUrl = fotoId;
                                 }
-
                             }
                         }
                     }
@@ -115,9 +105,8 @@
                  %>">
 
                 <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
-                <p>URL de la foto: <%= fotoUrl%></p>
                 <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
-                <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%= fotoUrl%>>
+                <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%=fotoUrl%>>
                 <% } else { %>
                 <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
                 <% } %>
