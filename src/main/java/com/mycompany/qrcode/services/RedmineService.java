@@ -133,30 +133,53 @@ public class RedmineService {
         Map<String, Object> parameters = new HashMap<>();
 
         for (CustomField cf : customFields) {
+            // Verificar si el campo es "Sector"
             if ("Sector".equalsIgnoreCase(cf.getName())) {
                 String sectorValue = (String) cf.getValue();
                 String[] words = sectorValue.split(" ");
                 StringBuilder modifiedSectorValue = new StringBuilder();
                 for (int i = 0; i < words.length; i++) {
+                    // Agregar la palabra al resultado
                     modifiedSectorValue.append(words[i]).append(" ");
+                    // Insertar un salto de línea después de cada dos palabras
                     if ((i + 1) % 2 == 0) {
                         modifiedSectorValue.append("\n");
                     }
                 }
+                // Eliminar el espacio extra al final
                 parameters.put("sector", modifiedSectorValue.toString().trim());
-            }
+            } // Verificar si el campo es "Departamento"
             else if ("Departamento".equalsIgnoreCase(cf.getName())) {
                 String departamentoValue = (String) cf.getValue();
                 String[] words = departamentoValue.split(" ");
                 StringBuilder modifiedDepartamentoValue = new StringBuilder();
                 for (int i = 0; i < words.length; i++) {
+                    // Agregar la palabra al resultado
                     modifiedDepartamentoValue.append(words[i]).append(" ");
+                    // Insertar un salto de línea después de cada dos palabras
                     if ((i + 1) % 2 == 0) {
                         modifiedDepartamentoValue.append("\n");
                     }
                 }
+                // Eliminar el espacio extra al final
                 parameters.put("departamento", modifiedDepartamentoValue.toString().trim());
+            } // Verificar si el campo es "Unidad"
+            else if ("Unidad".equalsIgnoreCase(cf.getName())) {
+                String unidadValue = (String) cf.getValue();
+                String[] words = unidadValue.split(" ");
+                StringBuilder modifiedUnidadValue = new StringBuilder();
+                for (int i = 0; i < words.length; i++) {
+                    // Agregar la palabra al resultado
+                    modifiedUnidadValue.append(words[i]).append(" ");
+                    // Insertar un salto de línea después de cada dos palabras
+                    if ((i + 1) % 2 == 0) {
+                        modifiedUnidadValue.append("\n");
+                    }
+                }
+                // Eliminar el espacio extra al final
+                parameters.put("unidad", modifiedUnidadValue.toString().trim());
             } else {
+                // Para el resto de los campos, agregamos sus valores como están
                 parameters.put(cf.getName().toLowerCase().trim().replaceAll(" ", "_"), cf.getValue());
             }
         }
