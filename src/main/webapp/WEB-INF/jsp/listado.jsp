@@ -58,7 +58,7 @@
             <h1>Listado Detallado de Fiscales - Municipalidad de Asunción</h1>
         </div>
         <div class="container">
-            <input type="text" id="searchBox" class="form-control mb-3" placeholder="Buscar por nombre o apellido..." onkeyup="filterFiscales()">
+            <input type="text" id="searchBox" class="form-control mb-3" placeholder="Buscar por nombre, apellido o cédula..." onkeyup="filterFiscales()">
             <%
                 List<Issue> issues = (List<Issue>) request.getAttribute("issues");
                 String error = (String) request.getAttribute("error");
@@ -91,17 +91,27 @@
             %>
             <div class="issue-card" 
                  data-nombre="<%
+                     String nombreLower = "";
+                     String apellidoLower = "";
                      String cedula = "";
+
                      if (issue.getCustomFields() != null) {
                          for (CustomField field : issue.getCustomFields()) {
-                             if ("Cedula".equals(field.getName())) {
-                                 cedula = field.getValue().toString() != null ? field.getValue().toString() : "";
+                             if ("Nombre".equals(field.getName()) && field.getValue() != null) {
+                                 nombreLower = field.getValue().toString().toLowerCase();
+                             }
+                             if ("Apellido".equals(field.getName()) && field.getValue() != null) {
+                                 apellidoLower = field.getValue().toString().toLowerCase();
+                             }
+                             if ("Cedula".equals(field.getName()) && field.getValue() != null) {
+                                 cedula = field.getValue().toString();
                              }
                          }
                      }
-                     out.print((nombre != null ? nombre.toLowerCase() : "") + " "
-                             + (apellido != null ? apellido.toLowerCase() : "") + " "
-                             + cedula);
+
+                     String nombreApellido = (!nombreLower.isEmpty() && !apellidoLower.isEmpty()) ? (nombreLower + " " + apellidoLower) : "";
+
+                     out.print(nombreLower + " " + apellidoLower + " " + cedula + " " + nombreApellido);
                  %>">
 
                 <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>

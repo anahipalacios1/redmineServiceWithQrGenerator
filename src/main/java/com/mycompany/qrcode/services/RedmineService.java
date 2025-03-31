@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +133,32 @@ public class RedmineService {
         Map<String, Object> parameters = new HashMap<>();
 
         for (CustomField cf : customFields) {
-            parameters.put(cf.getName().toLowerCase().trim().replaceAll(" ", "_"), cf.getValue());
+            if ("Sector".equalsIgnoreCase(cf.getName())) {
+                String sectorValue = (String) cf.getValue();
+                String[] words = sectorValue.split(" ");
+                StringBuilder modifiedSectorValue = new StringBuilder();
+                for (int i = 0; i < words.length; i++) {
+                    modifiedSectorValue.append(words[i]).append(" ");
+                    if ((i + 1) % 2 == 0) {
+                        modifiedSectorValue.append("\n");
+                    }
+                }
+                parameters.put("sector", modifiedSectorValue.toString().trim());
+            }
+            else if ("Departamento".equalsIgnoreCase(cf.getName())) {
+                String departamentoValue = (String) cf.getValue();
+                String[] words = departamentoValue.split(" ");
+                StringBuilder modifiedDepartamentoValue = new StringBuilder();
+                for (int i = 0; i < words.length; i++) {
+                    modifiedDepartamentoValue.append(words[i]).append(" ");
+                    if ((i + 1) % 2 == 0) {
+                        modifiedDepartamentoValue.append("\n");
+                    }
+                }
+                parameters.put("departamento", modifiedDepartamentoValue.toString().trim());
+            } else {
+                parameters.put(cf.getName().toLowerCase().trim().replaceAll(" ", "_"), cf.getValue());
+            }
         }
 
         String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
@@ -157,7 +183,6 @@ public class RedmineService {
 
     public byte[] obtenerImagenDesdeRedmine(Object fotoId) throws IOException {
         if (fotoId.toString().trim().isEmpty()) {
-            System.out.println("ACA VA A RETORNAR NULL");
             return null;
         }
 
