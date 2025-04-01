@@ -26,8 +26,8 @@
             .issue-card {
                 border: 1px solid #ced4da;
                 border-radius: 8px;
-                padding: 15px;
-                margin-bottom: 15px;
+                padding: 12px;
+                margin-bottom: 12px;
                 background-color: white;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
@@ -39,17 +39,14 @@
                 text-decoration: none;
                 display: inline-block;
             }
-            .custom-fields {
-                margin-top: 15px;
-            }
             .fiscal-photo {
-                width: 150px;
-                height: 150px;
+                width: 250px;
+                height: 250px;
                 border-radius: 8px;
                 border: 1px solid #ccc;
                 object-fit: cover;
                 display: block;
-                margin: 10px 0;
+                margin: auto;
             }
         </style>
     </head>
@@ -73,75 +70,57 @@
             <%
                 for (Issue issue : issues) {
                     String fotoUrl = null;
-                    String nombre = null;
-                    String apellido = null;
-
                     if (issue.getCustomFields() != null) {
                         for (CustomField field : issue.getCustomFields()) {
-                            if ("Fotografia".trim().equals(field.getName().trim()) && field.getValue() != null) {
-                                String fotoId = String.valueOf(field.getValue()).trim();
-                                if (fotoId.matches("\\d+")) {
-                                    fotoUrl = urlQr + "/attachments/download/" + fotoId + "?key=" + key;
-                                } else {
-                                    fotoUrl = fotoId;
-                                }
+                            if ("Fotografia".equals(field.getName()) && field.getValue() != null) {
+                                String fotoId = field.getValue().toString().trim();
+                                fotoUrl = fotoId.matches("\\d+") ? urlQr + "/attachments/download/" + fotoId + "?key=" + key : fotoId;
                             }
                         }
                     }
             %>
-            <div class="issue-card" 
-                 data-nombre="<%
-                     String nombreLower = "";
-                     String apellidoLower = "";
-                     String cedula = "";
-
-                     if (issue.getCustomFields() != null) {
-                         for (CustomField field : issue.getCustomFields()) {
-                             if ("Nombre".equals(field.getName()) && field.getValue() != null) {
-                                 nombreLower = field.getValue().toString().toLowerCase();
-                             }
-                             if ("Apellido".equals(field.getName()) && field.getValue() != null) {
-                                 apellidoLower = field.getValue().toString().toLowerCase();
-                             }
-                             if ("Cedula".equals(field.getName()) && field.getValue() != null) {
-                                 cedula = field.getValue().toString();
-                             }
-                         }
-                     }
-
-                     String nombreApellido = (!nombreLower.isEmpty() && !apellidoLower.isEmpty()) ? (nombreLower + " " + apellidoLower) : "";
-
-                     out.print(nombreLower + " " + apellidoLower + " " + cedula + " " + nombreApellido);
-                 %>">
-
-                <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
-                <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
-                <img alt="Fotografía del Fiscal" class="fiscal-photo" src=<%=fotoUrl%>>
-                <% } else { %>
-                <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
-                <% } %>
-
-                <div class="custom-fields">
-                    <% if (issue.getCustomFields() != null) {
-                            for (CustomField field : issue.getCustomFields()) {
-                                if ("Nombre".equals(field.getName())
-                                        || "Apellido".equals(field.getName())
-                                        || "Cédula".equals(field.getName())
-                                        || "Cargo".equals(field.getName())
-                                        || "Sector".equals(field.getName())
-                                        || "Departamento".equals(field.getName())
-                                        || "Unidad".equals(field.getName())) {
-                    %>
-                    <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
-                    <%
-                            }
+            <div class="issue-card" data-nombre="<%
+                String nombre = "", apellido = "", cedula = "";
+                if (issue.getCustomFields() != null) {
+                    for (CustomField field : issue.getCustomFields()) {
+                        if ("Nombre".equals(field.getName())) {
+                            nombre = field.getValue() != null ? field.getValue().toString().toLowerCase() : "";
                         }
-                    } else {
-                    %>
-                    <p>No hay información disponible del fiscal.</p>
-                    <% }%>
+                        if ("Apellido".equals(field.getName())) {
+                            apellido = field.getValue() != null ? field.getValue().toString().toLowerCase() : "";
+                        }
+                        if ("Cedula".equals(field.getName())) {
+                            cedula = field.getValue() != null ? field.getValue().toString() : "";
+                        }
+                    }
+                }
+                out.print(nombre + " " + apellido + " " + cedula);
+                 %>">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4><strong>ID:</strong> <%= issue.getId()%> - <%= issue.getSubject()%></h4>
+                        <div class="custom-fields">
+                            <% if (issue.getCustomFields() != null) {
+                                    for (CustomField field : issue.getCustomFields()) {
+                                        if ("Nombre".equals(field.getName()) || "Apellido".equals(field.getName()) || "Cedula".equals(field.getName()) || "Cargo".equals(field.getName()) || "Sector".equals(field.getName()) || "Departamento".equals(field.getName()) || "Unidad".equals(field.getName())) {
+                            %>
+                            <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
+                            <% }
+                            }
+                        } else { %>
+                            <p>No hay información disponible del fiscal.</p>
+                            <% }%>
+                        </div>
+                        <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-center justify-content-center">
+                        <% if (fotoUrl != null && !fotoUrl.isEmpty()) {%>
+                        <img alt="Fotografía del Fiscal" class="fiscal-photo" src="<%= fotoUrl%>">
+                        <% } else { %>
+                        <img src="https://via.placeholder.com/150?text=No+Foto" alt="No disponible" class="fiscal-photo">
+                        <% } %>
+                    </div>
                 </div>
-                <a href="/front/pdf/<%= issue.getId()%>" class="btn btn-export-pdf">Exportar carnet</a>
             </div>
             <% } %>
             <% } else { %>
@@ -154,12 +133,8 @@
                 let fiscales = document.querySelectorAll(".issue-card");
 
                 fiscales.forEach(fiscal => {
-                    let nombreCompleto = fiscal.getAttribute("data-nombre") || ""; // Evita errores si el atributo está vacío
-                    if (nombreCompleto.includes(input)) {
-                        fiscal.style.display = "block";
-                    } else {
-                        fiscal.style.display = "none";
-                    }
+                    let nombreCompleto = fiscal.getAttribute("data-nombre") || "";
+                    fiscal.style.display = nombreCompleto.includes(input) ? "block" : "none";
                 });
             }
         </script>
