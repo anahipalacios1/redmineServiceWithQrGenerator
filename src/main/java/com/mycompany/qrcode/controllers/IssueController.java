@@ -4,6 +4,7 @@ import com.mycompany.qrcode.response.IssuesResponse;
 import com.mycompany.qrcode.services.RedmineService;
 import com.mycompany.qrcode.beans.Issue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class IssueController {
 
     private final RedmineService redmineService;
 
+    @Value("${app.url}")
+    private String appUrl;
+
     @Autowired
     public IssueController(RedmineService redmineService) {
         this.redmineService = redmineService;
@@ -35,8 +39,7 @@ public class IssueController {
                     .findFirst()
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
 
-            // Agregar URL dinámica al modelo
-            String issueUrl = "http://localhost:8080/issue?id=" + id;
+            String issueUrl = appUrl + "/issue?id=" + id;
             model.addAttribute("issueUrl", issueUrl);
             model.addAttribute("issue", issue);
             return "seleccionar_id";  // Retorna la vista JSP "seleccionar_id"
