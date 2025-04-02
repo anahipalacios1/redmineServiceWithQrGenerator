@@ -26,33 +26,12 @@
 		<groupFooter>
 			<band height="250">
 				<rectangle>
-					<reportElement x="0" y="4" width="150" height="246" forecolor="#B0B0B0" backcolor="#CFCFCF" uuid="0d6361a3-6cec-4996-87d7-6e582e6e59ef"/>
+					<reportElement x="0" y="4" width="150" height="246" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="0d6361a3-6cec-4996-87d7-6e582e6e59ef"/>
 				</rectangle>
 				<frame>
-					<reportElement x="5" y="10" width="140" height="124" uuid="7b3e7e3f-66dc-4f94-9dbb-bf05e8133d62"/>
+					<reportElement x="5" y="100" width="140" height="75" uuid="7b3e7e3f-66dc-4f94-9dbb-bf05e8133d62"/>
 					<textField>
-						<reportElement style="MyStyle" x="5" y="7" width="129" height="17" forecolor="#5B5B5B" uuid="07db7f48-eac8-4e43-accb-3bcf7834f6cf"/>
-						<textElement textAlignment="Center">
-							<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$P{nombre}.toUpperCase()]]></textFieldExpression>
-					</textField>
-					<textField>
-						<reportElement style="MyStyle" x="5" y="19" width="129" height="17" forecolor="#5B5B5B" uuid="9f76891c-0f41-4edd-a0a6-82f244e5b16f"/>
-						<textElement textAlignment="Center">
-							<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-						</textElement>
-						<textFieldExpression><![CDATA[$P{apellido}.toUpperCase()]]></textFieldExpression>
-					</textField>
-					<textField>
-						<reportElement style="MyStyle" isPrintRepeatedValues="false" x="23" y="37" width="97" height="15" forecolor="#5B5B5B" uuid="17589670-8069-4d11-92ae-45fb99dfca9e"/>
-						<textElement textAlignment="Center">
-							<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
-						</textElement>
-						<textFieldExpression><![CDATA["C.I. "+ $P{cedula}]]></textFieldExpression>
-					</textField>
-					<textField>
-						<reportElement x="19" y="53" width="103" height="25" forecolor="#5B5B5B" uuid="b3ab2338-eebf-4612-adec-7a6934c850fa"/>
+						<reportElement x="20" y="2" width="103" height="25" forecolor="#5B5B5B" uuid="b3ab2338-eebf-4612-adec-7a6934c850fa"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 							<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
@@ -60,7 +39,7 @@
 						<textFieldExpression><![CDATA[$P{sector}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="18" y="79" width="104" height="21" forecolor="#5B5B5B" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
+						<reportElement x="19" y="28" width="104" height="21" forecolor="#5B5B5B" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 							<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
@@ -68,7 +47,7 @@
 						<textFieldExpression><![CDATA[$P{departamento}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="9" y="100" width="124" height="24" forecolor="#5B5B5B" uuid="b053e253-cf43-4846-b702-8ffeb91ec77c"/>
+						<reportElement x="10" y="49" width="124" height="24" forecolor="#5B5B5B" uuid="b053e253-cf43-4846-b702-8ffeb91ec77c"/>
 						<textElement textAlignment="Center" verticalAlignment="Middle">
 							<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 							<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
@@ -80,13 +59,13 @@
 					<reportElement x="0" y="240" width="150" height="10" forecolor="#B02A23" backcolor="#B34D4B" uuid="b8d7e47b-50a4-49cb-bdfa-ad0ed6eb2dc3"/>
 				</rectangle>
 				<componentElement>
-					<reportElement isPrintRepeatedValues="false" x="45" y="134" width="65" height="56" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
+					<reportElement isPrintRepeatedValues="false" x="15" y="10" width="123" height="88" uuid="3a8eae0c-7985-48c1-8a2f-1a0ccdbead5a"/>
 					<jr:QRCode xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 						<jr:codeExpression><![CDATA[$P{QR_CODE_DATA}]]></jr:codeExpression>
 					</jr:QRCode>
 				</componentElement>
 				<image hAlign="Left">
-					<reportElement x="23" y="190" width="102" height="44" uuid="9b43209d-0290-4230-a6f9-d5d851884301"/>
+					<reportElement x="26" y="180" width="102" height="44" uuid="9b43209d-0290-4230-a6f9-d5d851884301"/>
 					<imageExpression><![CDATA[$P{ASU_ORDEN}]]></imageExpression>
 				</image>
 			</band>
