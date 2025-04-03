@@ -91,7 +91,7 @@
 				<imageExpression><![CDATA[$P{PHOTO}]]></imageExpression>
 			</image>
 			<image hAlign="Left">
-				<reportElement x="44" y="10" width="84" height="43" uuid="fabc95b2-ba4d-4608-b7e3-c8d253fa7318"/>
+				<reportElement x="40" y="19" width="70" height="35" uuid="fabc95b2-ba4d-4608-b7e3-c8d253fa7318"/>
 				<imageExpression><![CDATA[$P{PHOTO_PATH}]]></imageExpression>
 			</image>
 			<frame>
