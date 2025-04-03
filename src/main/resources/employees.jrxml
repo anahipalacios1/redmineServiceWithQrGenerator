@@ -118,8 +118,8 @@
 					</textElement>
 					<textFieldExpression><![CDATA["C.I. "+ $P{cedula}]]></textFieldExpression>
 				</textField>
-				<image>
-					<reportElement x="45" y="56" width="40" height="35" uuid="e41b07dd-f6cb-41ee-909b-e7804cd84387"/>
+				<image hAlign="Center" vAlign="Middle">
+					<reportElement x="38" y="54" width="57" height="35" uuid="e41b07dd-f6cb-41ee-909b-e7804cd84387"/>
 					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 						<pen lineWidth="4.0" lineStyle="Solid" lineColor="#8C8989"/>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
