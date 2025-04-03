@@ -114,6 +114,20 @@
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>src/main/resources/fonts</directory>
+                <includes>
+                    <include>Gotham.xml</include>
+                </includes>
+                <targetPath>fonts</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources/fonts/Gotham</directory>
+                <includes>
+                    <include>**/*.otf</include>
+                </includes>
+                <targetPath>fonts/Gotham</targetPath>
+            </resource>
         </resources>
         <finalName>${artifactId}</finalName>
         <plugins>
