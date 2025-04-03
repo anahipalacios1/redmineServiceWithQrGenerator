@@ -88,10 +88,17 @@ public class RedmineService {
         }
         JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
 
-        File subReportFileFront = ResourceUtils.getFile("classpath:customFields.jrxml");
-        JasperReport subReportFront = JasperCompileManager.compileReport(subReportFileFront.getAbsolutePath());
-        File subReportFileBack = ResourceUtils.getFile("classpath:customFieldsBack.jrxml");
-        JasperReport subReportBack = JasperCompileManager.compileReport(subReportFileBack.getAbsolutePath());
+        InputStream subReportStreamFront = getClass().getClassLoader().getResourceAsStream("customFields.jrxml");
+        if (subReportStreamFront == null) {
+            throw new FileNotFoundException("No se pudo encontrar el archivo customFields.jrxml en el classpath");
+        }
+        JasperReport subReportFront = JasperCompileManager.compileReport(subReportStreamFront);
+
+        InputStream subReportStreamBack = getClass().getClassLoader().getResourceAsStream("customFieldsBack.jrxml");
+        if (subReportStreamBack == null) {
+            throw new FileNotFoundException("No se pudo encontrar el archivo customFieldsBack.jrxml en el classpath");
+        }
+        JasperReport subReportBack = JasperCompileManager.compileReport(subReportStreamBack);
 
         List<Issue> issueList = new ArrayList<>();
         issueList.add(issue);
@@ -147,8 +154,7 @@ public class RedmineService {
                     }
                 }
                 parameters.put("sector", modifiedSectorValue.toString().trim());
-            }
-            else if ("Departamento".equalsIgnoreCase(cf.getName())) {
+            } else if ("Departamento".equalsIgnoreCase(cf.getName())) {
                 String departamentoValue = (String) cf.getValue();
                 String[] words = departamentoValue.split(" ");
                 StringBuilder modifiedDepartamentoValue = new StringBuilder();
@@ -159,8 +165,7 @@ public class RedmineService {
                     }
                 }
                 parameters.put("departamento", modifiedDepartamentoValue.toString().trim());
-            }
-            else if ("Unidad".equalsIgnoreCase(cf.getName())) {
+            } else if ("Unidad".equalsIgnoreCase(cf.getName())) {
                 String unidadValue = (String) cf.getValue();
                 String[] words = unidadValue.split(" ");
                 StringBuilder modifiedUnidadValue = new StringBuilder();
