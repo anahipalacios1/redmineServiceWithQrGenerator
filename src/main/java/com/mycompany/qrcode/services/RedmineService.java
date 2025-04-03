@@ -183,8 +183,17 @@ public class RedmineService {
 
         String qrCodeUrl = appUrl + "/issue?id=" + issue.getId();
 
-        String imagePath = ResourceUtils.getFile("classpath:img/logo.png").getAbsolutePath();
-        String imageAsu = ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").getAbsolutePath();
+        InputStream imageStream = getClass().getClassLoader().getResourceAsStream("img/logo.png");
+        if (imageStream == null) {
+            throw new FileNotFoundException("No se pudo encontrar el archivo img/logo.png en el classpath");
+        }
+        byte[] imageBytes = imageStream.readAllBytes();
+
+        InputStream imageAsuStream = getClass().getClassLoader().getResourceAsStream("img/ASU_EN_ORDEN_SOLO-01.png");
+        if (imageAsuStream == null) {
+            throw new FileNotFoundException("No se pudo encontrar el archivo img/ASU_EN_ORDEN_SOLO-01.png en el classpath");
+        }
+        byte[] imageAsuBytes = imageAsuStream.readAllBytes();
 
         parameters.put("createdBy", "Java Developer");
         parameters.put("CUSTOM_FIELDS_DATASOURCE", customFieldsDataSource);
@@ -193,8 +202,8 @@ public class RedmineService {
         parameters.put("SUBREPORT_PATH_BACK", subReportBack);
         parameters.put("PHOTO", fotografia);
         parameters.put("PHOTO_DTO", fotografiaDto);
-        parameters.put("PHOTO_PATH", imagePath);
-        parameters.put("ASU_ORDEN", imageAsu);
+        parameters.put("PHOTO_PATH", imageBytes);
+        parameters.put("ASU_ORDEN", imageAsuBytes);
         parameters.put("QR_CODE_DATA", qrCodeUrl);
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, issueDataSource);

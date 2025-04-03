@@ -4,8 +4,8 @@
 	<style name="MyStyle" fontName="Gotham" fontSize="12" isBold="true"/>
 	<parameter name="PHOTO" class="byte[]"/>
 	<parameter name="PHOTO_DTO" class="byte[]"/>
-	<parameter name="PHOTO_PATH" class="java.lang.String"/>
-	<parameter name="ASU_ORDEN" class="java.lang.String"/>
+	<parameter name="PHOTO_PATH" class="byte[]"/>
+	<parameter name="ASU_ORDEN" class="byte[]"/>
 	<parameter name="CUSTOM_FIELDS_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="CUSTOM_FIELDS_DATASOURCE_BACK" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="SUBREPORT_PATH_FRONT" class="net.sf.jasperreports.engine.JasperReport"/>
