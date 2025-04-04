@@ -5,6 +5,7 @@ package com.mycompany.qrcode;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import com.mycompany.qrcode.config.JasperConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -14,5 +15,7 @@ public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
         System.setProperty("java.awt.headless", "true");
         SpringApplication.run(Application.class, args);
+
+        JasperConfig.configureJasperReports();
   }
 }
