@@ -138,7 +138,9 @@ public class RedmineService {
         }
 
         if (fotografiaDto == null) {
-            fotografiaDto = Files.readAllBytes(ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").toPath());
+//            fotografiaDto = Files.readAllBytes(ResourceUtils.getFile("classpath:img/ASU_EN_ORDEN_SOLO-01.png").toPath());
+            InputStream is = getClass().getClassLoader().getResourceAsStream("img/ASU_EN_ORDEN_SOLO-01.png");
+            fotografiaDto = is != null ? is.readAllBytes() : new byte[0];
         }
 
         Map<String, Object> parameters = new HashMap<>();
