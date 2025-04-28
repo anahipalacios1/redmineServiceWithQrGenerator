@@ -18,7 +18,6 @@ import com.mycompany.qrcode.util.IssuesReportGenerator;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,7 +145,7 @@ public class RedmineService {
         Map<String, Object> parameters = new HashMap<>();
 
         for (CustomField cf : customFields) {
-            if ("Sector".equalsIgnoreCase(cf.getName())) {
+            if ("Dpto. Institucional".equalsIgnoreCase(cf.getName())) {
                 String sectorValue = (String) cf.getValue();
                 String[] words = sectorValue.split(" ");
                 StringBuilder modifiedSectorValue = new StringBuilder();
@@ -156,7 +155,7 @@ public class RedmineService {
                         modifiedSectorValue.append("\n");
                     }
                 }
-                parameters.put("sector", modifiedSectorValue.toString().trim());
+                parameters.put("dpto. Institucional", modifiedSectorValue.toString().trim());
             } else if ("Departamento".equalsIgnoreCase(cf.getName())) {
                 String departamentoValue = (String) cf.getValue();
                 String[] words = departamentoValue.split(" ");
@@ -284,7 +283,7 @@ public class RedmineService {
                 .filter(cf -> cf.getName().equals("Nombre")
                 || cf.getName().equals("Apellido")
                 || cf.getName().equals("Cedula")
-                || cf.getName().equals("Sector")
+                || cf.getName().equals("Dpto. Institucional")
                 || cf.getName().equals("Departamento")
                 || cf.getName().equals("Unidad"))
                 .collect(Collectors.toList());

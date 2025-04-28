@@ -16,7 +16,7 @@
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="cargo" class="java.lang.String"/>
 	<parameter name="cedula" class="java.lang.String"/>
-	<parameter name="sector" class="java.lang.String"/>
+	<parameter name="dpto. Institucional" class="java.lang.String"/>
 	<parameter name="departamento" class="java.lang.String"/>
 	<parameter name="unidad" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
@@ -36,7 +36,7 @@
 							<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 							<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$P{sector}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$P{dpto. Institucional}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
 					</textField>
 					<textField>
 						<reportElement x="19" y="28" width="104" height="21" forecolor="#5B5B5B" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
@@ -101,10 +101,10 @@
 					<textElement textAlignment="Center">
 						<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$P{nombre}.toUpperCase() + " " + $P{apellido}.toUpperCase()]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$P{nombre}.toUpperCase()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="MyStyle" x="19" y="15" width="94" height="12" forecolor="#B80A07" uuid="3739d977-e433-4e58-9e54-abd5c2216256"/>
+					<reportElement style="MyStyle" x="19" y="28" width="94" height="12" forecolor="#B80A07" uuid="3739d977-e433-4e58-9e54-abd5c2216256"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 						<paragraph lineSpacing="Single"/>
@@ -112,14 +112,14 @@
 					<textFieldExpression><![CDATA[$P{cargo}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="MyStyle" x="19" y="34" width="93" height="15" forecolor="#B80A07" uuid="7e4d249d-cdcf-4f7e-afb3-2a7b143fbd4d"/>
+					<reportElement style="MyStyle" x="19" y="42" width="93" height="15" forecolor="#B80A07" uuid="7e4d249d-cdcf-4f7e-afb3-2a7b143fbd4d"/>
 					<textElement textAlignment="Center">
 						<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["C.I. "+ $P{cedula}]]></textFieldExpression>
 				</textField>
 				<image hAlign="Center" vAlign="Middle">
-					<reportElement x="38" y="54" width="57" height="35" uuid="e41b07dd-f6cb-41ee-909b-e7804cd84387"/>
+					<reportElement x="38" y="59" width="57" height="35" uuid="e41b07dd-f6cb-41ee-909b-e7804cd84387"/>
 					<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 						<pen lineWidth="4.0" lineStyle="Solid" lineColor="#8C8989"/>
 						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -129,6 +129,13 @@
 					</box>
 					<imageExpression><![CDATA[$P{PHOTO_DTO}]]></imageExpression>
 				</image>
+				<textField>
+					<reportElement style="MyStyle" x="0" y="16" width="129" height="16" forecolor="#5B5B5B" uuid="1df1769c-20a6-46ed-b119-1331fc9071d1"/>
+					<textElement textAlignment="Center">
+						<font fontName="Gotham" size="10" pdfFontName="fonts/Gotham/Gotham-Ultra.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{apellido}.toUpperCase()]]></textFieldExpression>
+				</textField>
 			</frame>
 			<rectangle>
 				<reportElement x="0" y="240" width="150" height="10" forecolor="#B02A23" backcolor="#B34D4B" uuid="2d6bc2f7-92d5-4877-91cd-dc8fde2ab478"/>
