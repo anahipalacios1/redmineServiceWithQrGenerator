@@ -20,7 +20,7 @@ public class QrCodeController {
     @Autowired
     private QrCodeService qrCodeService;
 
-    @Value("app.url")
+    @Value("${app.url}")
     private String appUrl;
 
     @GetMapping("/qr/{id}")

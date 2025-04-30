@@ -3,6 +3,7 @@ package com.mycompany.qrcode.controllers;
 import com.mycompany.qrcode.response.IssuesResponse;
 import com.mycompany.qrcode.services.RedmineService;
 import com.mycompany.qrcode.beans.Issue;
+import com.mycompany.qrcode.config.RedmineConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ContentDisposition;
@@ -21,13 +22,15 @@ import org.springframework.web.server.ResponseStatusException;
 public class IssueController {
 
     private final RedmineService redmineService;
+    private final RedmineConfig redmineConfig;
 
     @Value("${app.url}")
     private String appUrl;
 
     @Autowired
-    public IssueController(RedmineService redmineService) {
+    public IssueController(RedmineService redmineService, RedmineConfig redmineConfig) {
         this.redmineService = redmineService;
+        this.redmineConfig = redmineConfig;
     }
 
     @GetMapping("/issue")
@@ -42,7 +45,9 @@ public class IssueController {
             String issueUrl = appUrl + "/issue?id=" + id;
             model.addAttribute("issueUrl", issueUrl);
             model.addAttribute("issue", issue);
-            return "seleccionar_id";  // Retorna la vista JSP "seleccionar_id"
+            model.addAttribute("urlQr", redmineConfig.getUrlQr());
+            model.addAttribute("key", redmineConfig.getKey());
+            return "seleccionar_id";
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("error", "Error al obtener los datos del issue: " + e.getMessage());

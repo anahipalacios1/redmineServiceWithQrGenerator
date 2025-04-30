@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     private final RedmineService redmineService;
-    private final RedmineConfig redmineConfig; // Inyectamos RedmineConfig
+    private final RedmineConfig redmineConfig;
 
     @Autowired
     public HomeController(RedmineService redmineService, RedmineConfig redmineConfig) {
         this.redmineService = redmineService;
-        this.redmineConfig = redmineConfig; // Inyectamos RedmineConfig
+        this.redmineConfig = redmineConfig;
     }
 
     @GetMapping("/")
