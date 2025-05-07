@@ -68,7 +68,7 @@
                 <div class="custom-fields mt-3">
                     <% if (issue.getCustomFields() != null) {
                             for (CustomField field : issue.getCustomFields()) {
-                                if (!"Logo de Dpto.".equals(field.getName())) {
+                                if (!"Logo de Dpto.".equals(field.getName()) && !"Fotografia".equals(field.getName())) {
                     %>
                     <p><strong><%= field.getName() %>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor" %></p>
                     <%      }
