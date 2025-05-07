@@ -51,28 +51,17 @@
             <%
                 Issue issue = (Issue) request.getAttribute("issue");
                 String error = (String) request.getAttribute("error");
-                String urlQr = (String) request.getAttribute("urlQr");
-                String key = (String) request.getAttribute("key");
-                String fotoUrl = null;
-
-                if (issue != null && issue.getCustomFields() != null) {
-                    for (CustomField field : issue.getCustomFields()) {
-                        if ("Fotografia".equals(field.getName()) && field.getValue() != null) {
-                            String fotoId = field.getValue().toString().trim();
-                            fotoUrl = fotoId.matches("\\d+") ? urlQr + "/attachments/download/" + fotoId + "?key=" + key : fotoId;
-                        }
-                    }
-                }
+                String fotoUrl = (String) request.getAttribute("fotoUrl");
             %>
 
-            <% if (error != null) {%>
-            <div class="alert alert-danger"><%= error%></div>
-            <% } else if (issue != null) {%>
+            <% if (error != null) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } else if (issue != null) { %>
             <div class="issue-details">
                 <h4 class="text-center">Información del Fiscal</h4>
 
                 <div class="text-center">
-                    <img src="<%= (fotoUrl != null && !fotoUrl.isEmpty()) ? fotoUrl : "https://via.placeholder.com/150?text=No+Foto"%>"
+                    <img src="<%= (fotoUrl != null && !fotoUrl.isEmpty()) ? fotoUrl : "https://via.placeholder.com/150?text=No+Foto" %>"
                          alt="Fotografía del Fiscal" class="foto-fiscal img-fluid">
                 </div>
 
@@ -81,17 +70,17 @@
                             for (CustomField field : issue.getCustomFields()) {
                                 if (!"Logo de Dpto.".equals(field.getName())) {
                     %>
-                    <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
-                    <%  }
-                    }
-                } else { %>
+                    <p><strong><%= field.getName() %>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor" %></p>
+                    <%      }
+                        }
+                    } else { %>
                     <p>No hay campos personalizados disponibles.</p>
                     <% } %>
                 </div>
             </div>
             <% } else { %>
             <div class="alert alert-info">No se encontraron datos del fiscal.</div>
-            <% }%>
+            <% } %>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
