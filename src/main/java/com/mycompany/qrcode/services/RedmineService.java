@@ -145,7 +145,7 @@ public class RedmineService {
         Map<String, Object> parameters = new HashMap<>();
 
         for (CustomField cf : customFields) {
-            if ("Dpto. Institucional".equalsIgnoreCase(cf.getName())) {
+            if ("Dirección Institucional".equalsIgnoreCase(cf.getName())) {
                 String sectorValue = (String) cf.getValue();
                 String[] words = sectorValue.split(" ");
                 StringBuilder modifiedSectorValue = new StringBuilder();
@@ -155,7 +155,7 @@ public class RedmineService {
                         modifiedSectorValue.append("\n");
                     }
                 }
-                parameters.put("dpto. Institucional", modifiedSectorValue.toString().trim());
+                parameters.put("direccion Institucional", modifiedSectorValue.toString().trim());
             } else if ("Departamento".equalsIgnoreCase(cf.getName())) {
                 String departamentoValue = (String) cf.getValue();
                 String[] words = departamentoValue.split(" ");
@@ -283,7 +283,7 @@ public class RedmineService {
                 .filter(cf -> cf.getName().equals("Nombre")
                 || cf.getName().equals("Apellido")
                 || cf.getName().equals("Cedula")
-                || cf.getName().equals("Dpto. Institucional")
+                || cf.getName().equals("Dirección Institucional")
                 || cf.getName().equals("Departamento")
                 || cf.getName().equals("Unidad"))
                 .collect(Collectors.toList());

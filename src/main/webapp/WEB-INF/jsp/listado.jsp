@@ -102,7 +102,7 @@
                         <div class="custom-fields">
                             <% if (issue.getCustomFields() != null) {
                                     for (CustomField field : issue.getCustomFields()) {
-                                        if ("Nombre".equals(field.getName()) || "Apellido".equals(field.getName()) || "Cedula".equals(field.getName()) || "Cargo".equals(field.getName()) || "Dpto. Institucional".equals(field.getName()) || "Departamento".equals(field.getName()) || "Unidad".equals(field.getName())) {
+                                        if ("Nombre".equals(field.getName()) || "Apellido".equals(field.getName()) || "Cedula".equals(field.getName()) || "Cargo".equals(field.getName()) || "Dirección Institucional".equals(field.getName()) || "Departamento".equals(field.getName()) || "Unidad".equals(field.getName())) {
                             %>
                             <p><strong><%= field.getName()%>:</strong> <%= field.getValue() != null ? field.getValue() : "Sin valor"%></p>
                             <% }

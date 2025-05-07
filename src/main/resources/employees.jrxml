@@ -16,7 +16,7 @@
 	<parameter name="apellido" class="java.lang.String"/>
 	<parameter name="cargo" class="java.lang.String"/>
 	<parameter name="cedula" class="java.lang.String"/>
-	<parameter name="dpto. Institucional" class="java.lang.String"/>
+	<parameter name="direccion Institucional" class="java.lang.String"/>
 	<parameter name="departamento" class="java.lang.String"/>
 	<parameter name="unidad" class="java.lang.String"/>
 	<field name="id" class="java.lang.Integer"/>
@@ -36,7 +36,7 @@
 							<font fontName="Gotham" size="5" pdfFontName="fonts/Gotham/Gotham-Bold.otf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
 							<paragraph lineSpacing="Single" lineSpacingSize="1.0"/>
 						</textElement>
-						<textFieldExpression><![CDATA[$P{dpto. Institucional}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$P{direccion Institucional}.toUpperCase().replaceAll("(.)", "$1 ").trim()]]></textFieldExpression>
 					</textField>
 					<textField>
 						<reportElement x="19" y="28" width="104" height="21" forecolor="#5B5B5B" uuid="7f525ca2-2f3a-4506-bcb0-8418dec2a1c2"/>
