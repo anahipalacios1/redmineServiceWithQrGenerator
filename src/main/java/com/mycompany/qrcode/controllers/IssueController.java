@@ -9,6 +9,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ContentDisposition;
@@ -48,31 +51,32 @@ public class IssueController {
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Issue not found"));
 
             String fotoUrlFinal = null;
+            Map<String, String> tempFields = new HashMap<>();
 
             if (issue.getCustomFields() != null) {
                 for (CustomField field : issue.getCustomFields()) {
-                    System.out.println("Campo: " + field.getName() + ", Valor: " + field.getValue());
-                    if ("fotografia".equalsIgnoreCase(field.getName().trim()) && field.getValue() != null) {
-                        String fotoId = field.getValue().toString().trim();
-                        System.out.println("fotoId encontrado: " + fotoId);
+                    String fieldName = field.getName().trim();
+                    String fieldValue = field.getValue() != null ? field.getValue().toString().trim() : "";
 
-                        // Acepta solo números, que son IDs de adjuntos en Redmine
+                    System.out.println("Campo: " + fieldName + ", Valor: " + fieldValue);
+
+                    tempFields.put(fieldName, fieldValue);
+
+                    if ("fotografia".equalsIgnoreCase(fieldName) && !fieldValue.isEmpty()) {
+                        String fotoId = fieldValue;
+
                         if (fotoId.matches("\\d+")) {
                             String imagesFolder = "/opt/images";
                             File folder = new File(imagesFolder);
-
-                            // Crea la carpeta si no existe
                             if (!folder.exists()) {
                                 folder.mkdirs();
                             }
 
-                            // Ruta local donde guardar la imagen
                             String localPath = imagesFolder + "/" + fotoId + ".jpg";
                             File imageFile = new File(localPath);
 
                             if (!imageFile.exists()) {
                                 String redmineFotoUrl = redmineConfig.getUrlQr() + "/attachments/download/" + fotoId + "?key=" + redmineConfig.getKey();
-
                                 try (InputStream in = new URL(redmineFotoUrl).openStream()) {
                                     Files.copy(in, imageFile.toPath());
                                     System.out.println("Imagen descargada exitosamente: " + localPath);
@@ -83,7 +87,6 @@ public class IssueController {
                                 System.out.println("Imagen ya existe en: " + localPath);
                             }
 
-                            // Esta URL debe ser accesible (configurada en StaticResourceConfig)
                             fotoUrlFinal = "/images/" + fotoId + ".jpg";
                         } else {
                             System.out.println("Valor del campo Fotografía no es numérico: " + fotoId);
@@ -92,10 +95,19 @@ public class IssueController {
                 }
             }
 
-            System.out.println("fotoUrlFinal: " + fotoUrlFinal);
+            Map<String, String> camposOrdenados = new LinkedHashMap<>();
+            camposOrdenados.put("Fiscalizador activo", "Sí");
+            camposOrdenados.put("Fotografía", fotoUrlFinal);
+            camposOrdenados.put("Cedula", tempFields.getOrDefault("Cedula", "Sin valor"));
+            camposOrdenados.put("Nombre", tempFields.getOrDefault("Nombre", "Sin valor"));
+            camposOrdenados.put("Apellido", tempFields.getOrDefault("Apellido", "Sin valor"));
+            camposOrdenados.put("Cargo", tempFields.getOrDefault("Cargo", "Sin valor"));
+            camposOrdenados.put("Dirección Institucional", tempFields.getOrDefault("Dpto. Institucional", "Sin valor")); // <- corrección de nombre
+            camposOrdenados.put("Departamento", tempFields.getOrDefault("Departamento", "Sin valor"));
+            camposOrdenados.put("Unidad", tempFields.getOrDefault("Unidad", "Sin valor"));
+            camposOrdenados.put("Telefono de Contacto", tempFields.getOrDefault("Telefono", "Sin valor"));
 
-            String issueUrl = appUrl + "/issue?id=" + id;
-            model.addAttribute("issueUrl", issueUrl);
+            model.addAttribute("campos", camposOrdenados);
             model.addAttribute("issue", issue);
             model.addAttribute("fotoUrl", fotoUrlFinal);
 
@@ -107,7 +119,7 @@ public class IssueController {
             return "error";
         }
     }
-    
+
     @GetMapping("/front/pdf/{id}")
     public ResponseEntity<byte[]> exportPdfForIssueFront(@PathVariable("id") int id) {
         try {
